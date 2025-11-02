@@ -63,5 +63,4 @@ See `.env.example` for required API keys:
 ## 📖 Documentation
 
 - [Google ADK Python Docs](https://github.com/google/adk-python)
-- Lesson notebooks in `/google_adk_refrence` folder
 
