@@ -6,9 +6,9 @@ Modern portfolio website with AI voice agent powered by Google Gemini ADK (Pytho
 
 ### Backend (Python + ADK)
 - **AI Agent**: Google ADK with Gemini 2.0 Flash
-- **Voice**: ElevenLabs voice cloning
-- **Data**: Notion CMS + GitHub MCP
-- **API**: FastAPI server
+- **Voice**: Gemini TTS (testing) / ElevenLabs voice cloning
+- **Data**: Notion CMS + GitHub integration
+- **Server**: ADK Web Server
 
 ### Frontend (Next.js + TypeScript)
 - **Framework**: Next.js 14 with App Router
@@ -24,7 +24,7 @@ cd backend
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
-python main.py
+adk web --host 0.0.0.0 --port 8000 .
 ```
 
 ### Frontend Setup
@@ -54,7 +54,7 @@ See `.env.example` for required API keys:
 
 ## 📚 Tech Stack
 
-- **Backend**: Python, Google ADK, FastAPI, Pydantic
+- **Backend**: Python, Google ADK
 - **Frontend**: Next.js, TypeScript, Tailwind CSS, Framer Motion
 - **AI/ML**: Google Gemini 2.0, ElevenLabs, OpenAI Whisper
 - **CMS**: Notion
