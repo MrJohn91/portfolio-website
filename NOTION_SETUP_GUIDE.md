@@ -104,3 +104,4 @@ Once the database is created and you have the ID, we can:
 2. Create the Notion client integration in the backend
 3. Set up automatic data fetching for the frontend
 
+

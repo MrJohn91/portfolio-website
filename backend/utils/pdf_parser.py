@@ -187,3 +187,4 @@ if __name__ == "__main__":
         print(f"\n{section.upper()}:")
         print(content[:200] + "..." if len(content) > 200 else content)
 
+
