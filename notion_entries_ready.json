@@ -1,0 +1,541 @@
+[
+  {
+    "type": "Bio",
+    "name": "John Igbokwe - AI & Data Engineer",
+    "category": "AI/ML",
+    "content": "Over 9 years of experience specializing in data and AI engineering, with a focus on transitioning organizations to data-driven solutions. Expertise in building scalable data architectures supporting analytics and AI, with a core competency in using technologies like Python, SQL, and cloud platforms.",
+    "location": "Berlin, Germany",
+    "url": "https://www.linkedin.com/in/mrjigbokwe/",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 0
+  },
+  {
+    "type": "Education",
+    "name": "WBS Coding School - AI, ML Data Science Certificate",
+    "category": "AI/ML",
+    "content": "Certificate - AI, ML Data Science, and Analytics",
+    "priority": "High",
+    "status": "Active",
+    "level": "Advanced"
+  },
+  {
+    "type": "Education",
+    "name": "Imo State University - Bachelor's in Psychology",
+    "category": "Cloud",
+    "content": "Bachelor's - Psychology",
+    "priority": "Medium",
+    "status": "Active",
+    "level": "Advanced"
+  },
+  {
+    "type": "Skill",
+    "name": "English",
+    "category": "Soft Skills",
+    "content": "Fluent",
+    "level": "Expert",
+    "priority": "Medium",
+    "status": "Active"
+  },
+  {
+    "type": "Skill",
+    "name": "Deutsch (German)",
+    "category": "Soft Skills",
+    "content": "B1 Level",
+    "level": "Intermediate",
+    "priority": "Medium",
+    "status": "Active"
+  },
+  {
+    "type": "Experience",
+    "name": "Pluto's Tech - AI & Data Engineer",
+    "category": "AI/ML",
+    "content": "\u2022 Automated workflows and integrated AI agents to streamline processes, saving significant time and reducing manual effort across data and business operations.\n\u2022 Enhanced e-health applications by implementing AI-driven solutions for mental health management, increasing system efficiency by 40%.\n\u2022 Optimized decision-making models using machine learning and data analysis, resulting in a 50% improvement in user experience.\n\u2022 Developed optimization models using LangChain, contributing to 25% more efficient personalization solutions.",
+    "location": "Berlin, Germany",
+    "tech_stack": "AI, Machine Learning, NLP, GenAI, LangChain",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 1
+  },
+  {
+    "type": "Experience",
+    "name": "Univacity - Data & AI Engineer",
+    "category": "AI/ML",
+    "content": "\u2022 Developed AI-powered tools that personalized student study options, increasing satisfaction by 25% using Databricks\n\u2022 Streamlined processes to improve conversion rates by 15% using advanced AI models.\n\u2022 Created scalable databases that enhanced data processing efficiency by 40%, supporting a 50% increase in international recruitment.\n\u2022 Personalized user experiences with AI (NLP), boosting user engagement by 30%.\n\u2022 Led architecture of data pipelines and dashboards that supported Univacity's global network, using Power BI and Streamlit for reports to support data projects, enabling double-digit growth in application completion rates.",
+    "location": "United Kingdom",
+    "tech_stack": "AI, Data Engineering, NLP, Scalable Databases",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 2
+  },
+  {
+    "type": "Experience",
+    "name": "Schnellecke GmbH - Data Coordinator",
+    "category": "Data Engineering",
+    "content": "\u2022 Troubleshot data issues, enhancing operational efficiency.\n\u2022 Maintained extensive documentation for data sources and workflows, raising data flow efficiency by 40%.\n\u2022 Designed data integration techniques that improved overall operational metrics by 25%.\n\u2022 Engineered processing solutions that minimized downtime by 30%.",
+    "location": "Bremen, Germany",
+    "tech_stack": "Data Troubleshooting, Operational Efficiency, Data Documentation, Data Integration",
+    "priority": "Medium",
+    "status": "Active",
+    "display_order": 3
+  },
+  {
+    "type": "Experience",
+    "name": "Hytel Communications - IT Solutions Architect",
+    "category": "Cloud",
+    "content": "\u2022 Provided comprehensive technical support, achieving an 80% customer satisfaction rate.\n\u2022 Collaborated with the sales team for client-focused technical solutions, enhancing client relationships and satisfaction.\n\u2022 Developed customized IT solutions that met specific client requirements, resulting in increased customer retention.\n\u2022 Implemented and troubleshot network solutions, optimizing connectivity by 50%.",
+    "location": "Owerri, Nigeria",
+    "tech_stack": "Technical Support, Customer Satisfaction, Solution Development, Network Optimization",
+    "priority": "Medium",
+    "status": "Active",
+    "display_order": 4
+  },
+  {
+    "type": "Skill",
+    "name": "Python",
+    "category": "Backend",
+    "level": "Expert",
+    "priority": "High",
+    "status": "Active"
+  },
+  {
+    "type": "Skill",
+    "name": "SQL",
+    "category": "Data Engineering",
+    "level": "Expert",
+    "priority": "High",
+    "status": "Active"
+  },
+  {
+    "type": "Skill",
+    "name": "Machine Learning",
+    "category": "AI/ML",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active"
+  },
+  {
+    "type": "Skill",
+    "name": "Cloud Platforms",
+    "category": "Cloud",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active"
+  },
+  {
+    "type": "Skill",
+    "name": "Data Engineering",
+    "category": "Data Engineering",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active"
+  },
+  {
+    "type": "Skill",
+    "name": "NLP",
+    "category": "AI/ML",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active"
+  },
+  {
+    "type": "Skill",
+    "name": "AI Agents",
+    "category": "AI/ML",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active"
+  },
+  {
+    "type": "Skill",
+    "name": "AI Automation",
+    "category": "AI/ML",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active"
+  },
+  {
+    "type": "Skill",
+    "name": "Flask",
+    "category": "Backend",
+    "level": "Advanced",
+    "priority": "Medium",
+    "status": "Active"
+  },
+  {
+    "type": "Skill",
+    "name": "FastAPI",
+    "category": "Backend",
+    "level": "Advanced",
+    "priority": "Medium",
+    "status": "Active"
+  },
+  {
+    "type": "Skill",
+    "name": "TensorFlow",
+    "category": "AI/ML",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active"
+  },
+  {
+    "type": "Skill",
+    "name": "Keras",
+    "category": "AI/ML",
+    "level": "Advanced",
+    "priority": "Medium",
+    "status": "Active"
+  },
+  {
+    "type": "Skill",
+    "name": "PyTorch",
+    "category": "AI/ML",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active"
+  },
+  {
+    "type": "Skill",
+    "name": "MCP",
+    "category": "Tools",
+    "level": "Advanced",
+    "priority": "Medium",
+    "status": "Active"
+  },
+  {
+    "type": "Skill",
+    "name": "n8n",
+    "category": "Tools",
+    "level": "Advanced",
+    "priority": "Medium",
+    "status": "Active"
+  },
+  {
+    "type": "Skill",
+    "name": "MySQL",
+    "category": "Data Engineering",
+    "level": "Advanced",
+    "priority": "Medium",
+    "status": "Active"
+  },
+  {
+    "type": "Skill",
+    "name": "PostgreSQL",
+    "category": "Data Engineering",
+    "level": "Advanced",
+    "priority": "Medium",
+    "status": "Active"
+  },
+  {
+    "type": "Skill",
+    "name": "Snowflake",
+    "category": "Data Engineering",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active"
+  },
+  {
+    "type": "Skill",
+    "name": "Databricks",
+    "category": "Data Engineering",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active"
+  },
+  {
+    "type": "Skill",
+    "name": "Azure Synapse",
+    "category": "Cloud",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active"
+  },
+  {
+    "type": "Skill",
+    "name": "Microsoft Fabrics",
+    "category": "Cloud",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active"
+  },
+  {
+    "type": "Skill",
+    "name": "Git",
+    "category": "Tools",
+    "level": "Advanced",
+    "priority": "Medium",
+    "status": "Active"
+  },
+  {
+    "type": "Skill",
+    "category": "Frontend",
+    "name": "Next.js 14",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 1
+  },
+  {
+    "type": "Skill",
+    "category": "Frontend",
+    "name": "TypeScript",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 2
+  },
+  {
+    "type": "Skill",
+    "category": "Frontend",
+    "name": "Tailwind CSS",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 3
+  },
+  {
+    "type": "Skill",
+    "category": "Frontend",
+    "name": "React",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 4
+  },
+  {
+    "type": "Skill",
+    "category": "Frontend",
+    "name": "shadcn/ui",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 5
+  },
+  {
+    "type": "Skill",
+    "category": "Frontend",
+    "name": "Framer Motion",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 6
+  },
+  {
+    "type": "Skill",
+    "category": "Frontend",
+    "name": "ESLint",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 7
+  },
+  {
+    "type": "Skill",
+    "category": "Backend",
+    "name": "Python",
+    "level": "Expert",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 8
+  },
+  {
+    "type": "Skill",
+    "category": "Backend",
+    "name": "FastAPI",
+    "level": "Expert",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 9
+  },
+  {
+    "type": "Skill",
+    "category": "Backend",
+    "name": "Google Gemini ADK",
+    "level": "Expert",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 10
+  },
+  {
+    "type": "Skill",
+    "category": "Backend",
+    "name": "Pydantic",
+    "level": "Expert",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 11
+  },
+  {
+    "type": "Skill",
+    "category": "AI/ML",
+    "name": "Machine Learning",
+    "level": "Expert",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 12
+  },
+  {
+    "type": "Skill",
+    "category": "AI/ML",
+    "name": "NLP (Natural Language Processing)",
+    "level": "Expert",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 13
+  },
+  {
+    "type": "Skill",
+    "category": "AI/ML",
+    "name": "AI Agents",
+    "level": "Expert",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 14
+  },
+  {
+    "type": "Skill",
+    "category": "AI/ML",
+    "name": "AI Automation",
+    "level": "Expert",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 15
+  },
+  {
+    "type": "Skill",
+    "category": "Cloud",
+    "name": "Cloud Platforms (AWS/GCP/Azure)",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 16
+  },
+  {
+    "type": "Skill",
+    "category": "Cloud",
+    "name": "Vercel Deployment",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 17
+  },
+  {
+    "type": "Skill",
+    "category": "Cloud",
+    "name": "Git/GitHub",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 18
+  },
+  {
+    "type": "Skill",
+    "category": "Cloud",
+    "name": "Docker",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 19
+  },
+  {
+    "type": "Skill",
+    "category": "Data Engineering",
+    "name": "SQL",
+    "level": "Expert",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 20
+  },
+  {
+    "type": "Skill",
+    "category": "Data Engineering",
+    "name": "Data Engineering",
+    "level": "Expert",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 21
+  },
+  {
+    "type": "Skill",
+    "category": "Data Engineering",
+    "name": "Data Pipelines",
+    "level": "Expert",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 22
+  },
+  {
+    "type": "Skill",
+    "category": "Data Engineering",
+    "name": "Power BI",
+    "level": "Expert",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 23
+  },
+  {
+    "type": "Skill",
+    "category": "Data Engineering",
+    "name": "Streamlit",
+    "level": "Expert",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 24
+  },
+  {
+    "type": "Skill",
+    "category": "Tools",
+    "name": "Streamlit",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 25
+  },
+  {
+    "type": "Skill",
+    "category": "Tools",
+    "name": "Power BI",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 26
+  },
+  {
+    "type": "Skill",
+    "category": "Tools",
+    "name": "ElevenLabs (Voice Cloning)",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 27
+  },
+  {
+    "type": "Skill",
+    "category": "Tools",
+    "name": "OpenAI Whisper",
+    "level": "Advanced",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 28
+  },
+  {
+    "type": "Contact",
+    "name": "LinkedIn Profile",
+    "category": "Tools",
+    "content": "Professional networking and connections",
+    "url": "https://www.linkedin.com/in/mrjigbokwe/",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 0
+  },
+  {
+    "type": "Contact",
+    "name": "GitHub Profile",
+    "category": "Tools",
+    "content": "View my repositories and open-source contributions",
+    "url": "https://github.com/MrJohn91",
+    "priority": "High",
+    "status": "Active",
+    "display_order": 1
+  }
+]
