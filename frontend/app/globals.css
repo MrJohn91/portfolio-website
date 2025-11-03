@@ -3,26 +3,72 @@
 @tailwind utilities;
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-}
+  --bg: #0a0a0a;
+  --surface: #0f1117;
+  --text: #e6eaf2;
+  --muted: #9aa3b2;
+  --brand: #CADCFC;
+  --accent: #A0B9D1;
+  --ring: hsl(210 10% 30% / 0.6);
+  --border: hsl(220 16% 20% / 0.7);
+  --radius: 18px;
+  --maxw: 1100px;
+  --header-h: 64px;
+  --space: clamp(16px, 2vw, 24px);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Gradients */
+  --grad-120: linear-gradient(120deg, var(--brand), var(--accent));
+  --grad-135: linear-gradient(135deg, var(--brand), var(--accent));
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(1200px 600px at 70% -200px, #1a1f2e 10%, transparent 60%),
+    var(--bg);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
-}
+  
+  .gradient-text {
+    --g1: #CADCFC;
+    --g2: #A0B9D1;
+    --g3: #6ee7ff;
+    background: linear-gradient(120deg, var(--g1), var(--g2), var(--g3));
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: hueShift 7s ease-in-out infinite;
+  }
 
+  @keyframes hueShift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+}

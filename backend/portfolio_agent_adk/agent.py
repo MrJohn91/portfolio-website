@@ -255,7 +255,7 @@ def collect_contact_info(name: str, email: str, phone: str = "") -> Dict[str, st
 
 
 root_agent = Agent(
-    model='gemini-2.0-flash-exp',
+    model='gemini-2.0-flash-live-001',
     name='portfolio_assistant',
     description='AI portfolio assistant for John Igbokwe with voice capabilities',
     instruction="""
