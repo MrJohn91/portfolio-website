@@ -96,6 +96,7 @@ export const translations = {
     email: 'Email',
     linkedin: 'LinkedIn',
     github: 'GitHub',
+    phone: 'Phone',
     
     // Footer
     copyright: '© 2025 John Igbokwe',
@@ -195,6 +196,7 @@ export const translations = {
     email: 'E-Mail',
     linkedin: 'LinkedIn',
     github: 'GitHub',
+    phone: 'Telefon',
     
     // Footer
     copyright: '© 2025 John Igbokwe',

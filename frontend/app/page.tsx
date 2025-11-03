@@ -449,7 +449,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold mb-4 text-[#38BDF8]">{getTranslation(language, "contactTitle")}</h2>
           <p className="text-[--muted]">{getTranslation(language, "contactDescription")}</p>
         </div>
-        <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
           <a
             href="mailto:nfluncvjohn@gmail.com"
             className="group p-6 border border-[--border] rounded-[--radius] bg-[--surface] hover:border-[--brand] transition-colors"
@@ -461,9 +461,26 @@ export default function Home() {
                   <path d="m22 8-10 6L2 8"/>
                 </svg>
               </div>
-              <div>
+              <div className="min-w-0 flex-1">
                 <h3 className="text-lg font-semibold mb-1">{getTranslation(language, "email")}</h3>
-                <p className="text-[--muted] text-sm">nfluncvjohn@gmail.com</p>
+                <p className="text-[--muted] text-sm break-words">nfluncvjohn@gmail.com</p>
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="tel:+4915252331017"
+            className="group p-6 border border-[--border] rounded-[--radius] bg-[--surface] hover:border-[--brand] transition-colors"
+          >
+            <div className="flex items-start gap-4">
+              <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#CADCFC] to-[#A0B9D1] flex items-center justify-center">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#0a0c12]">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              <div className="min-w-0 flex-1">
+                <h3 className="text-lg font-semibold mb-1">{getTranslation(language, "phone")}</h3>
+                <p className="text-[--muted] text-sm break-words">+49 152 5233 1017</p>
               </div>
             </div>
           </a>
@@ -482,9 +499,9 @@ export default function Home() {
                   <circle cx="4" cy="4" r="2"/>
                 </svg>
               </div>
-              <div>
+              <div className="min-w-0 flex-1">
                 <h3 className="text-lg font-semibold mb-1">{getTranslation(language, "linkedin")}</h3>
-                <p className="text-[--muted] text-sm">/in/mrjigbokwe</p>
+                <p className="text-[--muted] text-sm break-words">/in/mrjigbokwe</p>
               </div>
             </div>
           </a>
@@ -502,9 +519,9 @@ export default function Home() {
                   <path d="M9 18c-4.51 2-5-2-7-2" strokeLinecap="round"/>
                 </svg>
               </div>
-              <div>
+              <div className="min-w-0 flex-1">
                 <h3 className="text-lg font-semibold mb-1">{getTranslation(language, "github")}</h3>
-                <p className="text-[--muted] text-sm">@MrJohn91</p>
+                <p className="text-[--muted] text-sm break-words">@MrJohn91</p>
               </div>
             </div>
           </a>
@@ -518,3 +535,4 @@ export default function Home() {
     </main>
   )
 }
+
