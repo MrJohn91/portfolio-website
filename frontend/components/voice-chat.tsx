@@ -36,7 +36,7 @@ export function VoiceChat() {
           </div>
 
           {/* Talk to John Button */}
-          <div className="flex justify-center">
+          <div className="flex flex-col items-center gap-3">
             <button
               onClick={handleTalkToJohn}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-[--radius] font-semibold hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-16px_rgba(0,0,0,0.8)] transition-all"
@@ -61,6 +61,9 @@ export function VoiceChat() {
               </svg>
               Talk to John Igbokwe
             </button>
+            <p className="text-sm text-[--muted] text-center max-w-md">
+              Click the button above, then click "Start Voice" in the chat window to begin the conversation
+            </p>
           </div>
         </>
       ) : (
