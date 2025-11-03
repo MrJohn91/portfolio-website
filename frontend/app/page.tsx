@@ -3,8 +3,13 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import { VoiceChat } from "@/components/voice-chat"
+import { LanguageSwitcher } from "@/components/language-switcher"
+import { ParticleBackground } from "@/components/particle-background"
+import { useLanguage } from "@/lib/language-context"
+import { getTranslation } from "@/lib/i18n"
 
 export default function Home() {
+  const { language } = useLanguage()
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -16,57 +21,56 @@ export default function Home() {
   }, [])
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen relative">
+      <ParticleBackground />
       {/* Fixed Header */}
       <div className={`fixed inset-x-0 top-0 z-50 p-[--space] transition-transform duration-350 ${
         scrolled ? "translate-y-0" : "translate-y-0"
       }`}>
         <div className="h-[--header-h] flex items-center justify-between gap-[--space] max-w-[--maxw] mx-auto px-[--space] border border-[--border] rounded-full backdrop-blur-md bg-[--surface]/70 shadow-[0_0_0_1px_var(--ring)_inset,0_10px_30px_-20px_rgba(0,0,0,0.6)]">
-          <a href="#hero" className="px-3 py-1.5 text-[--brand] font-bold tracking-wider border border-[--border] rounded-full">
+          <a href="#hero" className="px-3 py-1.5 text-purple-300 font-bold tracking-wider border border-[--border] rounded-full">
             JI
           </a>
-          <nav className="flex gap-[clamp(10px,3vw,22px)]">
+          <nav className="flex items-center gap-[clamp(10px,3vw,22px)]">
             <a href="#hero" className="px-2.5 py-2 rounded-[10px] text-[--muted] hover:text-[--text] hover:bg-white/5 hover:no-underline">
-              Home
+              {getTranslation(language, "home")}
             </a>
             <a href="#about" className="px-2.5 py-2 rounded-[10px] text-[--muted] hover:text-[--text] hover:bg-white/5 hover:no-underline">
-              About
+              {getTranslation(language, "about")}
             </a>
             <a href="#agent" className="px-2.5 py-2 rounded-[10px] text-[--muted] hover:text-[--text] hover:bg-white/5 hover:no-underline">
-              Talk to Me
+              {getTranslation(language, "talkToMe")}
             </a>
             <a href="#contact" className="px-2.5 py-2 rounded-[10px] text-[--muted] hover:text-[--text] hover:bg-white/5 hover:no-underline">
-              Contact
+              {getTranslation(language, "contact")}
             </a>
+            <LanguageSwitcher />
           </nav>
         </div>
       </div>
 
       {/* Hero Section */}
       <section id="hero" className="min-h-[calc(100svh-var(--header-h)-var(--space)*2)] grid place-items-center max-w-[--maxw] mx-auto px-[--space] py-[12vh] text-center relative z-10">
-        <div>
-          <p className="mb-3 text-[--muted] text-[clamp(0.9rem,1.5vw,1rem)] uppercase tracking-widest">
-            AI & Data Engineer
-          </p>
-          <h1 className="gradient-text mb-2.5 text-[clamp(2rem,6vw,4rem)] leading-tight tracking-tight">
+        <div className="space-y-6">
+          <h1 className="gradient-text text-[clamp(2.5rem,6vw,4.5rem)] leading-tight tracking-tight font-bold">
             John Igbokwe
           </h1>
-          <p className="max-w-[52ch] mx-auto mb-7 text-[clamp(1rem,2vw,1.15rem)] text-[--muted]">
-            I build intelligent systems that solve real-world problems across healthcare, education, finance, and logistics.
+          <p className="max-w-[60ch] mx-auto text-[clamp(1.1rem,2.5vw,1.3rem)] text-gray-400 font-normal">
+            {getTranslation(language, "description")}
           </p>
-          <div className="flex justify-center flex-wrap gap-3">
+          <div className="flex justify-center flex-wrap gap-4 mt-8">
             <a
               href="#projects"
-              className="inline-block px-4 py-3 bg-[--grad-135] text-[#0a0c12] border-transparent rounded-[--radius] font-semibold hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-16px_rgba(0,0,0,0.8)] hover:no-underline transition-all"
+              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#64FFDA] via-purple-500 to-blue-400 text-white rounded-2xl font-semibold hover:scale-105 transition-all duration-300 no-underline"
             >
-              View Projects
+              {getTranslation(language, "viewProjects")}
             </a>
             <a
               href="/resume.pdf"
               download="John_Igbokwe_Resume.pdf"
-              className="inline-block px-4 py-3 border border-[--border] rounded-[--radius] bg-[#121523] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-16px_rgba(0,0,0,0.8)] hover:no-underline transition-all"
+              className="inline-flex items-center px-8 py-4 bg-transparent border border-[rgba(255,255,255,0.2)] text-white rounded-2xl font-semibold hover:border-[#64FFDA] hover:bg-[rgba(100,255,218,0.1)] hover:scale-105 transition-all duration-300 no-underline"
             >
-              Download CV
+              {getTranslation(language, "downloadCV")}
             </a>
           </div>
         </div>
@@ -74,24 +78,22 @@ export default function Home() {
 
       {/* About Section */}
       <section id="about" className="max-w-[--maxw] mx-auto px-[--space] py-20 border-t border-[--border]">
-        <h2 className="text-3xl font-bold mb-6">About Me</h2>
+        <h2 className="text-3xl font-bold mb-6 text-[#38BDF8]">{getTranslation(language, "aboutTitle")}</h2>
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <p className="mb-4 text-[--muted] leading-relaxed">
-              Hey, I'm John - an AI & Data Engineer passionate about building intelligent systems that make a real impact. 
-              With experience across multiple industries, I bring diverse expertise to every project.
+              {getTranslation(language, "about1")}
             </p>
             <p className="mb-4 text-[--muted] leading-relaxed">
-              When I'm not coding, I'm mentoring others in data/AI careers, playing FIFA, or traveling to explore new cultures. 
-              Continuous learning and adaptability are what drive me.
+              {getTranslation(language, "about2")}
             </p>
             <div className="mt-6">
-              <h3 className="text-xl font-semibold mb-3">Technologies</h3>
+              <h3 className="text-xl font-semibold mb-3">{getTranslation(language, "technologies")}</h3>
               <div className="flex flex-wrap gap-2">
                 {[
                   "Python", "AI/ML", "Data Engineering", "Snowflake", 
-                  "Databricks", "MCP", "LLM", "GenAI", "FastAPI", 
-                  "Next.js", "TypeScript", "GitHub", "Notion",
+                  "Databricks", "SQL", "MCP", "LLM", "GenAI", "FastAPI", 
+                  "Next.js", "TypeScript", "GitHub", "n8n",
                   "Cloud (AWS, GCP, Azure)"
                 ].map((tech, idx) => (
                   <span
@@ -118,7 +120,7 @@ export default function Home() {
 
       {/* Projects Section */}
       <section id="projects" className="max-w-[--maxw] mx-auto px-[--space] py-20 border-t border-[--border]">
-        <h2 className="text-3xl font-bold mb-12">Projects</h2>
+        <h2 className="text-3xl font-bold mb-12 text-[#38BDF8]">{getTranslation(language, "projectsTitle")}</h2>
         <div className="space-y-8">
           <article className="group">
             <h3 className="text-2xl font-semibold mb-2">Private Enterprise AI Agent</h3>
@@ -131,7 +133,7 @@ export default function Home() {
               href="https://github.com/MrJohn91/ai_local_websearchtool" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-[--brand] hover:text-[--accent] inline-flex items-center gap-1"
+              className="inline-flex items-center gap-1 text-white hover:text-purple-300"
             >
               View Project →
             </a>
@@ -148,7 +150,7 @@ export default function Home() {
               href="https://github.com/MrJohn91/Attribution-Pipeline-Orchestration" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-[--brand] hover:text-[--accent] inline-flex items-center gap-1"
+              className="inline-flex items-center gap-1 text-white hover:text-purple-300"
             >
               View Project →
             </a>
@@ -165,7 +167,7 @@ export default function Home() {
               href="https://github.com/MrJohn91" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-[--brand] hover:text-[--accent] inline-flex items-center gap-1"
+              className="inline-flex items-center gap-1 text-white hover:text-purple-300"
             >
               View Project →
             </a>
@@ -182,7 +184,7 @@ export default function Home() {
               href="https://github.com/MrJohn91/portfolio-website" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-[--brand] hover:text-[--accent] inline-flex items-center gap-1"
+              className="inline-flex items-center gap-1 text-white hover:text-purple-300"
             >
               View Project →
             </a>
@@ -193,33 +195,68 @@ export default function Home() {
       {/* AI Agent Section */}
       <section id="agent" className="max-w-[--maxw] mx-auto px-[--space] py-20 border-t border-[--border]">
         <div className="text-center mb-12">
-          <p className="mb-3 text-[--muted] text-sm uppercase tracking-widest">Interactive AI Agent</p>
-          <h2 className="text-3xl font-bold mb-4">Talk to John Igbokwe</h2>
+          <p className="mb-3 text-[--muted] text-sm uppercase tracking-widest">{getTranslation(language, "agentSubtitle")}</p>
+          <h2 className="text-3xl font-bold mb-4 text-[#38BDF8]">{getTranslation(language, "agentTitle")}</h2>
           <p className="max-w-[52ch] mx-auto text-[--muted]">
-            Talk to John and learn more about him through conversation
+            {getTranslation(language, "agentDescription")}
           </p>
         </div>
         <VoiceChat />
       </section>
 
       {/* Quick Stats */}
-      <section className="max-w-[--maxw] mx-auto px-[--space] py-12 border-t border-[--border]">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <section className="max-w-[--maxw] mx-auto px-[--space] py-12 border-t border-[--border] relative overflow-hidden">
+        {/* Faded color background effect */}
+        <div 
+          className="absolute inset-0 opacity-30 pointer-events-none"
+          style={{
+            background: `
+              repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 2px,
+                rgba(255, 255, 255, 0.02) 2px,
+                rgba(255, 255, 255, 0.02) 4px
+              ),
+              linear-gradient(
+                90deg,
+                rgba(56, 189, 248, 0.03) 0%,
+                transparent 25%,
+                transparent 50%,
+                rgba(100, 255, 218, 0.03) 75%,
+                transparent 100%
+              ),
+              radial-gradient(
+                ellipse at 30% 50%,
+                rgba(56, 189, 248, 0.05) 0%,
+                transparent 50%
+              ),
+              radial-gradient(
+                ellipse at 70% 50%,
+                rgba(100, 255, 218, 0.05) 0%,
+                transparent 50%
+              )
+            `,
+            backgroundSize: '100% 100%, 200% 100%, 60% 100%, 60% 100%',
+            backgroundPosition: '0 0, 0 0, 0 0, 100% 0'
+          }}
+        />
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center relative z-10">
           <div>
-            <div className="text-4xl font-bold text-[--brand] mb-2">5+</div>
-            <div className="text-[--muted]">Years Experience</div>
+            <div className="text-4xl font-bold mb-2 text-white">5+</div>
+            <div className="text-[--muted]">{getTranslation(language, "yearsExperience")}</div>
           </div>
           <div>
-            <div className="text-4xl font-bold text-[--brand] mb-2">5</div>
-            <div className="text-[--muted]">Industries</div>
+            <div className="text-4xl font-bold mb-2 text-white">5</div>
+            <div className="text-[--muted]">{getTranslation(language, "industries")}</div>
           </div>
           <div>
-            <div className="text-4xl font-bold text-[--brand] mb-2">10+</div>
-            <div className="text-[--muted]">Projects</div>
+            <div className="text-4xl font-bold mb-2 text-white">10+</div>
+            <div className="text-[--muted]">{getTranslation(language, "projects")}</div>
           </div>
           <div>
-            <div className="text-4xl font-bold text-[--brand] mb-2">∞</div>
-            <div className="text-[--muted]">Always Learning</div>
+            <div className="text-4xl font-bold mb-2 text-white">∞</div>
+            <div className="text-[--muted]">{getTranslation(language, "alwaysLearning")}</div>
           </div>
         </div>
       </section>
@@ -227,8 +264,8 @@ export default function Home() {
       {/* Contact Section */}
       <section id="contact" className="max-w-[--maxw] mx-auto px-[--space] py-20 border-t border-[--border]">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Contact</h2>
-          <p className="text-[--muted]">Wanna chat about AI, engineering, or just cool ideas? Let's connect.</p>
+          <h2 className="text-3xl font-bold mb-4 text-[#38BDF8]">{getTranslation(language, "contactTitle")}</h2>
+          <p className="text-[--muted]">{getTranslation(language, "contactDescription")}</p>
         </div>
         <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
           <a
@@ -243,7 +280,7 @@ export default function Home() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg font-semibold mb-1">Email</h3>
+                <h3 className="text-lg font-semibold mb-1">{getTranslation(language, "email")}</h3>
                 <p className="text-[--muted] text-sm">nfluncvjohn@gmail.com</p>
               </div>
             </div>
@@ -264,7 +301,7 @@ export default function Home() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg font-semibold mb-1">LinkedIn</h3>
+                <h3 className="text-lg font-semibold mb-1">{getTranslation(language, "linkedin")}</h3>
                 <p className="text-[--muted] text-sm">/in/mrjigbokwe</p>
               </div>
             </div>
@@ -284,7 +321,7 @@ export default function Home() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg font-semibold mb-1">GitHub</h3>
+                <h3 className="text-lg font-semibold mb-1">{getTranslation(language, "github")}</h3>
                 <p className="text-[--muted] text-sm">@MrJohn91</p>
               </div>
             </div>
@@ -302,14 +339,14 @@ export default function Home() {
               <polyline points="7 10 12 15 17 10"/>
               <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
-            Download CV
+            {getTranslation(language, "downloadCV")}
           </a>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="max-w-[--maxw] mx-auto px-[--space] py-8 border-t border-[--border] text-center text-[--muted] text-sm">
-        <p>© 2025 John Igbokwe</p>
+        <p>{getTranslation(language, "copyright")}</p>
       </footer>
     </main>
   )

@@ -1,95 +1,154 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useCallback } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Button } from "@/components/ui/button"
+import { Mic, Loader2 } from "lucide-react"
+import { VoiceCallInterface } from "@/components/voice-call-interface"
 import { Orb, AgentState } from "@/components/ui/orb"
-
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "https://portfolio-website-production-5107.up.railway.app/dev-ui/?app=portfolio_agent_adk"
+import { useLanguage } from "@/lib/language-context"
+import { getTranslation } from "@/lib/i18n"
 
 const ORB_COLORS: [string, string] = ["#CADCFC", "#A0B9D1"]
 
 export function VoiceChat() {
+  const { language } = useLanguage()
   const [agentState, setAgentState] = useState<AgentState>(null)
-  const [showChat, setShowChat] = useState(false)
+  const [callData, setCallData] = useState<{
+    token: string
+    url: string
+    roomName: string
+  } | null>(null)
+  const [isConnecting, setIsConnecting] = useState(false)
 
-  const handleTalkToJohn = () => {
-    setShowChat(true)
+  const handleStartCall = async () => {
+    try {
+      console.log("🎤 Starting voice call...");
+      setIsConnecting(true);
+      
+      const response = await fetch("/api/livekit/token", {
+        method: "POST",
+      })
+
+      console.log("📡 Token response status:", response.status);
+      
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        console.error("❌ Token request failed:", errorData);
+        throw new Error(errorData.error || `HTTP ${response.status}: Failed to get token`);
+      }
+
+      const data = await response.json()
+      console.log("✅ Token received:", {
+        roomName: data.roomName,
+        url: data.url,
+        hasToken: !!data.token
+      });
+      
+      if (!data.token || !data.url || !data.roomName) {
+        throw new Error("Invalid token response - missing required data");
+      }
+      
+      setCallData({
+        token: data.token,
+        url: data.url,
+        roomName: data.roomName,
+      })
+      setAgentState(null)
+    } catch (error) {
+      console.error("❌ Error starting call:", error);
+      const errorMessage = error instanceof Error ? error.message : "Unknown error";
+      alert(`Failed to connect to John: ${errorMessage}\n\nPlease check:\n1. Environment variables are set\n2. Backend agent is running\n3. Check browser console for details`);
+    } finally {
+      setIsConnecting(false);
+    }
   }
 
+  const handleDisconnect = useCallback(() => {
+    setCallData(null)
+    setAgentState(null)
+  }, [])
+
+  const handleStateChange = useCallback((state: AgentState) => {
+    setAgentState(state)
+  }, [])
+
   return (
-    <div className="w-full space-y-8">
-      {!showChat ? (
-        <>
-          {/* Orb Display */}
-          <div className="flex justify-center">
-            <div className="relative">
-              <div className="bg-[--surface] relative h-48 w-48 rounded-full p-1 shadow-[inset_0_2px_8px_rgba(0,0,0,0.1)] dark:shadow-[inset_0_2px_8px_rgba(0,0,0,0.5)] border border-[--border]">
-                <div className="h-full w-full overflow-hidden rounded-full shadow-[inset_0_0_12px_rgba(0,0,0,0.05)] dark:shadow-[inset_0_0_12px_rgba(0,0,0,0.3)]">
-                  <Orb
-                    colors={ORB_COLORS}
-                    seed={1000}
-                    agentState={agentState}
-                    className="h-full w-full"
-                  />
-                </div>
+    <>
+      <div className="w-full space-y-8">
+        {/* Orb Display */}
+        <div className="flex justify-center">
+          <div className="relative">
+            <div className="bg-[--surface] relative h-48 w-48 rounded-full p-1 shadow-[inset_0_2px_8px_rgba(0,0,0,0.1)] dark:shadow-[inset_0_2px_8px_rgba(0,0,0,0.5)] border border-[--border]">
+              <div className="h-full w-full overflow-hidden rounded-full shadow-[inset_0_0_12px_rgba(0,0,0,0.05)] dark:shadow-[inset_0_0_12px_rgba(0,0,0,0.3)]">
+                <Orb
+                  colors={ORB_COLORS}
+                  seed={1000}
+                  agentState={agentState}
+                  className="h-full w-full"
+                />
               </div>
             </div>
           </div>
-
-          {/* Talk to John Button */}
-          <div className="flex justify-center">
-            <button
-              onClick={handleTalkToJohn}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-[--radius] font-semibold hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-16px_rgba(0,0,0,0.8)] transition-all"
-              style={{
-                background: 'linear-gradient(135deg, var(--brand), var(--accent))',
-                color: '#0a0c12',
-                border: 'none'
-              }}
-            >
-              <svg 
-                viewBox="0 0 24 24" 
-                width="20" 
-                height="20" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              >
-                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
-                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-              </svg>
-              Talk to John Igbokwe
-            </button>
-          </div>
-        </>
-      ) : (
-        /* Modal with ADK UI */
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-          <div className="relative w-full max-w-4xl h-[80vh] mx-4 border border-[--border] rounded-[--radius] overflow-hidden bg-[--surface] shadow-2xl">
-            {/* Close Button */}
-            <button
-              onClick={() => setShowChat(false)}
-              className="absolute top-4 right-4 z-10 px-3 py-1 bg-[--surface] border border-[--border] rounded-md text-[--text] hover:bg-[--accent] transition-colors"
-            >
-              ✕ Close
-            </button>
-            
-            {/* Note about voice interaction */}
-            <div className="absolute top-4 left-4 right-20 bg-[--brand]/90 text-[#0a0c12] px-4 py-2 rounded-md text-sm z-20 font-medium">
-              💡 Click "Start Voice" in the chat window below to begin the conversation
-            </div>
-            
-            {/* ADK Web UI */}
-            <iframe
-              src={BACKEND_URL}
-              className="w-full h-full border-0"
-              title="Talk to John Igbokwe - AI Agent"
-              allow="microphone"
-            />
-          </div>
         </div>
-      )}
-    </div>
+
+        {/* Status Text */}
+        {(callData || agentState) && (
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center text-[--muted]"
+          >
+            {callData && !agentState
+              ? getTranslation(language, "connecting")
+              : agentState === "listening"
+              ? getTranslation(language, "listening")
+              : agentState === "talking"
+              ? getTranslation(language, "speaking")
+              : agentState === "thinking"
+              ? getTranslation(language, "thinking")
+              : callData
+              ? getTranslation(language, "readyToTalk")
+              : getTranslation(language, "readyToConnect")}
+          </motion.p>
+        )}
+
+        {/* Talk to John Button */}
+        <div className="flex justify-center">
+          <Button
+            size="lg"
+            variant="gradient"
+            className="text-lg px-10 py-6"
+            onClick={handleStartCall}
+            disabled={callData !== null || isConnecting}
+          >
+            {isConnecting ? (
+              <>
+                <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                {getTranslation(language, "connecting")}
+              </>
+            ) : (
+              <>
+                <Mic className="w-5 h-5 mr-2" />
+                {getTranslation(language, "talkButton")}
+              </>
+            )}
+          </Button>
+        </div>
+      </div>
+
+      {/* Voice Call Interface Overlay */}
+      <AnimatePresence>
+        {callData && (
+          <VoiceCallInterface
+            token={callData.token}
+            serverUrl={callData.url}
+            roomName={callData.roomName}
+            onDisconnect={handleDisconnect}
+            onStateChange={handleStateChange}
+          />
+        )}
+      </AnimatePresence>
+    </>
   )
 }

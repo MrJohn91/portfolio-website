@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --bg: #0a0a0a;
-  --surface: #0f1117;
-  --text: #e6eaf2;
+  --bg: #121218;
+  --surface: #2A384C;
+  --text: #E0E0E0;
   --muted: #9aa3b2;
-  --brand: #CADCFC;
-  --accent: #A0B9D1;
-  --ring: hsl(210 10% 30% / 0.6);
-  --border: hsl(220 16% 20% / 0.7);
+  --brand: #64FFDA;
+  --accent: #38BDF8;
+  --ring: rgba(100, 255, 218, 0.3);
+  --border: rgba(255, 255, 255, 0.1);
   --radius: 18px;
   --maxw: 1100px;
   --header-h: 64px;
@@ -25,15 +25,29 @@ body {
   margin: 0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
   color: var(--text);
-  background:
-    radial-gradient(1200px 600px at 70% -200px, #1a1f2e 10%, transparent 60%),
-    var(--bg);
+  background: var(--bg);
   line-height: 1.5;
   min-height: 100vh;
 }
 
 * {
   box-sizing: border-box;
+}
+
+/* Cursor glow effect */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    600px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.08),
+    transparent 70%
+  );
+  transition: background 0.2s ease-out;
+  mix-blend-mode: screen;
+  z-index: 0;
 }
 
 a {
@@ -52,23 +66,57 @@ a:hover {
   }
   
   .gradient-text {
-    --g1: #CADCFC;
-    --g2: #A0B9D1;
-    --g3: #6ee7ff;
-    background: linear-gradient(120deg, var(--g1), var(--g2), var(--g3));
-    background-size: 200% 200%;
+    background: linear-gradient(90deg, #64FFDA 0%, #a78bfa 50%, #60a5fa 100%);
+    background-size: 200% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: hueShift 7s ease-in-out infinite;
+    animation: shimmer 3s ease-in-out infinite;
   }
 
-  @keyframes hueShift {
-    0%, 100% {
-      background-position: 0% 50%;
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
     }
-    50% {
-      background-position: 100% 50%;
+    100% {
+      background-position: 200% 0;
     }
+  }
+  
+  .glow-effect {
+    text-shadow: 0 0 10px rgba(100, 255, 218, 0.5), 0 0 20px rgba(100, 255, 218, 0.3);
+  }
+  
+  .btn-glow:hover {
+    box-shadow: 0 0 20px rgba(100, 255, 218, 0.5), 0 0 40px rgba(100, 255, 218, 0.3);
+  }
+
+  .btn-primary {
+    background: #64FFDA;
+    color: #0A0A0F;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    background: #38BDF8;
+    filter: brightness(1.1);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+    border-color: #64FFDA;
+    background: rgba(100, 255, 218, 0.1);
   }
 }

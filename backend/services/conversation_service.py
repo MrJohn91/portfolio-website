@@ -20,8 +20,8 @@ except:
     pass  # Use environment variables instead
 
 # Import Google Gemini for AI analysis
-from google import genai
-from google.genai import types
+# Note: google.genai is only available when using Google ADK
+# For LiveKit Agents, we'll import conditionally
 
 class ConversationService:
     """Service for storing and analyzing portfolio conversations in Notion"""
@@ -59,13 +59,20 @@ class ConversationService:
                 "interest_level": "Medium"
             }
         
+        # Format conversation for analysis (needed in both success and fallback)
+        conversation_text = ""
+        for msg in messages:
+            role = msg.get('role', 'user')
+            content = msg.get('content', '')
+            conversation_text += f"{role.upper()}: {content}\n\n"
+        
         try:
-            # Format conversation for Gemini
-            conversation_text = ""
-            for msg in messages:
-                role = msg.get('role', 'user')
-                content = msg.get('content', '')
-                conversation_text += f"{role.upper()}: {content}\n\n"
+            # Try to import google.genai (only available with ADK)
+            try:
+                from google import genai
+            except ImportError:
+                # If not available, skip Gemini analysis
+                raise Exception("Google genai not available")
             
             client = genai.Client(api_key=self.gemini_api_key)
             
@@ -92,7 +99,7 @@ Respond in this exact JSON format:
 """
             
             response = client.models.generate_content(
-                model='gemini-2.0-flash-exp',
+                model='gemini-2.0-flash-thinking-exp-1219',
                 contents=analysis_prompt
             )
             
@@ -118,7 +125,7 @@ Respond in this exact JSON format:
             }
             
         except Exception as e:
-            print(f"Error in AI analysis: {e}")
+            print(f"⚠️ Error in AI analysis: {e}")
             # Fallback to basic analysis
             topics = []
             if any(word in conversation_text.lower() for word in ["skill", "experience", "project"]):
@@ -128,10 +135,11 @@ Respond in this exact JSON format:
             if any(word in conversation_text.lower() for word in ["contact", "email", "reach out"]):
                 topics.append("Follow-up")
             
+            # Use fallback summary
             return {
                 "topics": topics if topics else ["General Inquiry"],
                 "sentiment": "Neutral",
-                "summary": f"Conversation with {len(messages)} messages",
+                "summary": f"Contact information collected via voice interaction ({len(messages)} messages)",
                 "interest_level": "Medium"
             }
     

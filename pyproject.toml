@@ -1,0 +1,31 @@
+[project]
+name = "john-portfolio-agent"
+version = "1.0.0"
+description = "John Igbokwe's Portfolio Voice Agent"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "livekit-agents[mcp]>=1.2.0",
+    "livekit-plugins-openai>=1.0.0",
+    "livekit-plugins-silero>=1.0.0",
+    "livekit-plugins-elevenlabs>=1.2.15",
+    "python-dotenv>=1.0.0",
+    "httpx>=0.25.0",
+    "notion-client>=2.2.15",
+    "PyGithub>=2.3.0",
+    "google-generativeai>=0.8.0",
+    "elevenlabs>=1.0.0",
+    "openai>=1.54.0",
+    "PyPDF2>=3.0.0",
+    "pdfminer.six>=20221105",
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py313"]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I", "N", "W"]
+ignore = ["E501"]
+
