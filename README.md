@@ -91,5 +91,4 @@ See `.env.example` for required API keys:
 
 - [LiveKit Agents Docs](https://docs.livekit.io/agents/start/)
 - [LiveKit Python SDK](https://github.com/livekit/python-sdks)
-- [SyncTrack Reference](https://github.com/MrJohn91/synctrack_customer_voice_agent)
 
