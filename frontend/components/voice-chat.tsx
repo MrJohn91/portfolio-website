@@ -9,20 +9,20 @@ const ORB_COLORS: [string, string] = ["#CADCFC", "#A0B9D1"]
 
 export function VoiceChat() {
   const [agentState, setAgentState] = useState<AgentState>(null)
-  const [showIframe, setShowIframe] = useState(false)
+  const [showChat, setShowChat] = useState(false)
 
   const handleTalkToJohn = () => {
-    setShowIframe(true)
+    setShowChat(true)
   }
 
   return (
     <div className="w-full space-y-8">
-      {!showIframe ? (
+      {!showChat ? (
         <>
           {/* Orb Display */}
           <div className="flex justify-center">
             <div className="relative">
-              <div className="bg-[--surface] relative h-48 w-48 rounded-full p-1 shadow-[inset_0_2px_8px_rgba(0,0,0,0.1)] dark:shadow-[inset_0_2px_8px_rgba(0,0,0,0.5)] border border-[--border]">
+              <div className="bg-[--surface] relative h-32 w-32 rounded-full p-1 shadow-[inset_0_2px_8px_rgba(0,0,0,0.1)] dark:shadow-[inset_0_2px_8px_rgba(0,0,0,0.5)] border border-[--border]">
                 <div className="h-full w-full overflow-hidden rounded-full shadow-[inset_0_0_12px_rgba(0,0,0,0.05)] dark:shadow-[inset_0_0_12px_rgba(0,0,0,0.3)]">
                   <Orb
                     colors={ORB_COLORS}
@@ -39,7 +39,12 @@ export function VoiceChat() {
           <div className="flex justify-center">
             <button
               onClick={handleTalkToJohn}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[--grad-135] text-[#0a0c12] border-transparent rounded-[--radius] font-semibold hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-16px_rgba(0,0,0,0.8)] transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-[--radius] font-semibold hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-16px_rgba(0,0,0,0.8)] transition-all"
+              style={{
+                background: 'linear-gradient(135deg, var(--brand), var(--accent))',
+                color: '#0a0c12',
+                border: 'none'
+              }}
             >
               <svg 
                 viewBox="0 0 24 24" 
@@ -57,31 +62,25 @@ export function VoiceChat() {
               Talk to John Igbokwe
             </button>
           </div>
-
-          {/* Status Text */}
-          {agentState && (
-            <p className="text-center text-[--muted] text-sm">
-              {agentState === "listening" && "John is listening..."}
-              {agentState === "talking" && "John is speaking..."}
-              {agentState === "thinking" && "John is thinking..."}
-            </p>
-          )}
         </>
       ) : (
-        /* ADK Web UI in iframe */
-        <div className="w-full h-[600px] border border-[--border] rounded-[--radius] overflow-hidden">
-          <div className="relative w-full h-full">
+        /* Modal with ADK UI */
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <div className="relative w-full max-w-4xl h-[80vh] mx-4 border border-[--border] rounded-[--radius] overflow-hidden bg-[--surface] shadow-2xl">
+            {/* Close Button */}
+            <button
+              onClick={() => setShowChat(false)}
+              className="absolute top-4 right-4 z-10 px-3 py-1 bg-[--surface] border border-[--border] rounded-md text-[--text] hover:bg-[--accent] transition-colors"
+            >
+              ✕ Close
+            </button>
+            
+            {/* ADK Web UI */}
             <iframe
               src={BACKEND_URL}
               className="w-full h-full border-0"
               title="Talk to John Igbokwe - AI Agent"
             />
-            <button
-              onClick={() => setShowIframe(false)}
-              className="absolute top-4 right-4 px-3 py-1 bg-[--surface] border border-[--border] rounded-md text-[--text] hover:bg-[--accent] transition-colors"
-            >
-              Close
-            </button>
           </div>
         </div>
       )}
