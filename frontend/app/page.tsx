@@ -346,7 +346,7 @@ export default function Home() {
               LLM orchestration and data engineering.
             </p>
             <a 
-              href="https://github.com/MrJohn91" 
+              href="https://github.com/MrJohn91/snowflake-mcp-server-agent" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-white hover:text-purple-300"
