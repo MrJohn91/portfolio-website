@@ -38,6 +38,15 @@ export default function Home() {
             <a href="#about" className="px-2.5 py-2 rounded-[10px] text-[--muted] hover:text-[--text] hover:bg-white/5 hover:no-underline">
               {getTranslation(language, "about")}
             </a>
+            <a href="#experience" className="px-2.5 py-2 rounded-[10px] text-[--muted] hover:text-[--text] hover:bg-white/5 hover:no-underline">
+              {getTranslation(language, "experience")}
+            </a>
+            <a href="#skills" className="px-2.5 py-2 rounded-[10px] text-[--muted] hover:text-[--text] hover:bg-white/5 hover:no-underline">
+              {getTranslation(language, "skillsTitle")}
+            </a>
+            <a href="#projects" className="px-2.5 py-2 rounded-[10px] text-[--muted] hover:text-[--text] hover:bg-white/5 hover:no-underline">
+              {getTranslation(language, "projectsTitle")}
+            </a>
             <a href="#agent" className="px-2.5 py-2 rounded-[10px] text-[--muted] hover:text-[--text] hover:bg-white/5 hover:no-underline">
               {getTranslation(language, "talkToMe")}
             </a>
@@ -77,34 +86,16 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="max-w-[--maxw] mx-auto px-[--space] py-20 border-t border-[--border]">
-        <h2 className="text-3xl font-bold mb-6 text-[#38BDF8]">{getTranslation(language, "aboutTitle")}</h2>
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+      <section id="about" className="max-w-[--maxw] mx-auto px-[--space] pt-20 pb-12 border-t border-[--border]">
+        <h2 className="text-3xl font-bold mb-16 text-[#38BDF8]">{getTranslation(language, "aboutTitle")}</h2>
+        <div className="grid md:grid-cols-2 gap-12 items-start">
           <div>
-            <p className="mb-4 text-[--muted] leading-relaxed">
+            <p className="mb-4 text-[--muted] leading-relaxed text-lg">
               {getTranslation(language, "about1")}
             </p>
-            <p className="mb-4 text-[--muted] leading-relaxed">
+            <p className="text-[--muted] leading-relaxed text-lg">
               {getTranslation(language, "about2")}
             </p>
-            <div className="mt-6">
-              <h3 className="text-xl font-semibold mb-3">{getTranslation(language, "technologies")}</h3>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  "Python", "AI/ML", "Data Engineering", "Snowflake", 
-                  "Databricks", "SQL", "MCP", "LLM", "GenAI", "FastAPI", 
-                  "Next.js", "TypeScript", "GitHub", "n8n",
-                  "Cloud (AWS, GCP, Azure)"
-                ].map((tech, idx) => (
-                  <span
-                    key={idx}
-                    className="px-3 py-1.5 bg-[--surface] text-[--text] rounded-full text-sm border border-[--border]"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
           </div>
           <div className="relative w-full aspect-square rounded-[--radius] overflow-hidden border border-[--border]">
             <Image
@@ -114,6 +105,197 @@ export default function Home() {
               className="object-cover"
               priority
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Work Experience Section */}
+      <section id="experience" className="max-w-[--maxw] mx-auto px-[--space] pt-12 pb-20 border-t border-[--border]">
+        <h2 className="text-3xl font-bold mb-12 text-[--text]">{getTranslation(language, "experienceTitle")}</h2>
+        <div className="space-y-8">
+          {/* Pluto's Tech */}
+          <article className="group p-6 border border-[--border] rounded-[--radius] bg-[--surface] hover:border-[--brand] transition-colors">
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+              <div>
+                <h3 className="text-xl font-semibold mb-1">{getTranslation(language, "plutosCompany")}</h3>
+                <p className="text-[#38BDF8] font-medium mb-2">{getTranslation(language, "plutosRole")}</p>
+                <p className="text-[--muted] text-sm">{getTranslation(language, "plutosLocation")}</p>
+              </div>
+            </div>
+            <ul className="space-y-2 text-[--muted] leading-relaxed">
+              <li>• {getTranslation(language, "plutosBullet1")}</li>
+              <li>• {getTranslation(language, "plutosBullet2")}</li>
+              <li>• {getTranslation(language, "plutosBullet3")}</li>
+              <li>• {getTranslation(language, "plutosBullet4")}</li>
+            </ul>
+          </article>
+
+          {/* Univacity */}
+          <article className="group p-6 border border-[--border] rounded-[--radius] bg-[--surface] hover:border-[--brand] transition-colors">
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+              <div>
+                <h3 className="text-xl font-semibold mb-1">{getTranslation(language, "univacityCompany")}</h3>
+                <p className="text-[#38BDF8] font-medium mb-2">{getTranslation(language, "univacityRole")}</p>
+                <p className="text-[--muted] text-sm">{getTranslation(language, "univacityLocation")}</p>
+              </div>
+            </div>
+            <ul className="space-y-2 text-[--muted] leading-relaxed">
+              <li>• {getTranslation(language, "univacityBullet1")}</li>
+              <li>• {getTranslation(language, "univacityBullet2")}</li>
+              <li>• {getTranslation(language, "univacityBullet3")}</li>
+              <li>• {getTranslation(language, "univacityBullet4")}</li>
+              <li>• {getTranslation(language, "univacityBullet5")}</li>
+            </ul>
+          </article>
+
+          {/* Schnellecke GmbH */}
+          <article className="group p-6 border border-[--border] rounded-[--radius] bg-[--surface] hover:border-[--brand] transition-colors">
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+              <div>
+                <h3 className="text-xl font-semibold mb-1">{getTranslation(language, "schnelleckeCompany")}</h3>
+                <p className="text-[#38BDF8] font-medium mb-2">{getTranslation(language, "schnelleckeRole")}</p>
+                <p className="text-[--muted] text-sm">{getTranslation(language, "schnelleckeLocation")}</p>
+              </div>
+            </div>
+            <ul className="space-y-2 mb-4 text-[--muted] leading-relaxed">
+              <li>• {getTranslation(language, "schnelleckeBullet1")}</li>
+              <li>• {getTranslation(language, "schnelleckeBullet2")}</li>
+              <li>• {getTranslation(language, "schnelleckeBullet3")}</li>
+              <li>• {getTranslation(language, "schnelleckeBullet4")}</li>
+            </ul>
+            <div className="flex flex-wrap gap-2 mt-4">
+              {["Data Engineering", "Data Integration", "Operational Efficiency", "Data Documentation"].map((tech, idx) => (
+                <span
+                  key={idx}
+                  className="px-3 py-1 bg-[--surface] text-[--text] rounded-full text-xs border border-[--border]"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </article>
+
+          {/* Hytel Communications */}
+          <article className="group p-6 border border-[--border] rounded-[--radius] bg-[--surface] hover:border-[--brand] transition-colors">
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+              <div>
+                <h3 className="text-xl font-semibold mb-1">{getTranslation(language, "hytelCompany")}</h3>
+                <p className="text-[#38BDF8] font-medium mb-2">{getTranslation(language, "hytelRole")}</p>
+                <p className="text-[--muted] text-sm">{getTranslation(language, "hytelLocation")}</p>
+              </div>
+            </div>
+            <ul className="space-y-2 mb-4 text-[--muted] leading-relaxed">
+              <li>• {getTranslation(language, "hytelBullet1")}</li>
+              <li>• {getTranslation(language, "hytelBullet2")}</li>
+              <li>• {getTranslation(language, "hytelBullet3")}</li>
+              <li>• {getTranslation(language, "hytelBullet4")}</li>
+            </ul>
+            <div className="flex flex-wrap gap-2 mt-4">
+              {["Cloud", "Network Solutions", "IT Architecture", "Technical Support"].map((tech, idx) => (
+                <span
+                  key={idx}
+                  className="px-3 py-1 bg-[--surface] text-[--text] rounded-full text-xs border border-[--border]"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </article>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="max-w-[--maxw] mx-auto px-[--space] py-20 border-t border-[--border]">
+        <h2 className="text-3xl font-bold mb-12 text-[#38BDF8]">{getTranslation(language, "skillsTitle")}</h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Frontend */}
+          <div>
+            <h3 className="text-xl font-semibold mb-4 text-[--text]">{getTranslation(language, "skillsFrontend")}</h3>
+            <div className="flex flex-wrap gap-2">
+              {["Next.js 14", "TypeScript", "Tailwind CSS", "React", "shadcn/ui", "Framer Motion", "ESLint"].map((skill, idx) => (
+                <span
+                  key={idx}
+                  className="px-3 py-1 bg-[--surface] text-[--text] rounded-full text-xs border border-[--border]"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Backend */}
+          <div>
+            <h3 className="text-xl font-semibold mb-4 text-[--text]">{getTranslation(language, "skillsBackend")}</h3>
+            <div className="flex flex-wrap gap-2">
+              {["Python", "FastAPI", "Google Gemini ADK", "Pydantic", "Flask"].map((skill, idx) => (
+                <span
+                  key={idx}
+                  className="px-3 py-1 bg-[--surface] text-[--text] rounded-full text-xs border border-[--border]"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* AI/ML */}
+          <div>
+            <h3 className="text-xl font-semibold mb-4 text-[--text]">{getTranslation(language, "skillsAIML")}</h3>
+            <div className="flex flex-wrap gap-2">
+              {["Machine Learning", "NLP", "AI Agents", "AI Automation", "TensorFlow", "Keras", "PyTorch"].map((skill, idx) => (
+                <span
+                  key={idx}
+                  className="px-3 py-1 bg-[--surface] text-[--text] rounded-full text-xs border border-[--border]"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Data Engineering */}
+          <div>
+            <h3 className="text-xl font-semibold mb-4 text-[--text]">{getTranslation(language, "skillsDataEngineering")}</h3>
+            <div className="flex flex-wrap gap-2">
+              {["SQL", "Data Engineering", "Data Pipelines", "Power BI", "Streamlit", "Databricks", "Snowflake", "Azure Synapse"].map((skill, idx) => (
+                <span
+                  key={idx}
+                  className="px-3 py-1 bg-[--surface] text-[--text] rounded-full text-xs border border-[--border]"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Cloud */}
+          <div>
+            <h3 className="text-xl font-semibold mb-4 text-[--text]">{getTranslation(language, "skillsCloud")}</h3>
+            <div className="flex flex-wrap gap-2">
+              {["AWS", "GCP", "Azure", "Vercel", "Microsoft Fabrics"].map((skill, idx) => (
+                <span
+                  key={idx}
+                  className="px-3 py-1 bg-[--surface] text-[--text] rounded-full text-xs border border-[--border]"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Tools */}
+          <div>
+            <h3 className="text-xl font-semibold mb-4 text-[--text]">{getTranslation(language, "skillsTools")}</h3>
+            <div className="flex flex-wrap gap-2">
+              {["Git", "Docker", "MySQL", "PostgreSQL", "MCP", "n8n", "ElevenLabs", "OpenAI Whisper"].map((skill, idx) => (
+                <span
+                  key={idx}
+                  className="px-3 py-1 bg-[--surface] text-[--text] rounded-full text-xs border border-[--border]"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -325,21 +507,6 @@ export default function Home() {
                 <p className="text-[--muted] text-sm">@MrJohn91</p>
               </div>
             </div>
-          </a>
-        </div>
-
-        <div className="mt-12 text-center">
-          <a
-            href="/resume.pdf"
-            download="John_Igbokwe_Resume.pdf"
-            className="inline-flex items-center gap-2 px-6 py-3 border border-[--border] rounded-[--radius] bg-[--grad-135] text-[#0a0c12] border-transparent font-semibold hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-16px_rgba(0,0,0,0.8)] hover:no-underline transition-all"
-          >
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-            {getTranslation(language, "downloadCV")}
           </a>
         </div>
       </section>
