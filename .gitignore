@@ -51,3 +51,9 @@ yarn-error.log*
 
 # Misc
 *.tsbuildinfo
+
+# Documentation/Temporary files
+DEPLOYMENT.md
+DEPLOYMENT_READY.md
+TEST_SUMMARY.md
+notion_entries_ready.json
