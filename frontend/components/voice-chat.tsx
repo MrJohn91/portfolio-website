@@ -22,7 +22,7 @@ export function VoiceChat() {
           {/* Orb Display */}
           <div className="flex justify-center">
             <div className="relative">
-              <div className="bg-[--surface] relative h-32 w-32 rounded-full p-1 shadow-[inset_0_2px_8px_rgba(0,0,0,0.1)] dark:shadow-[inset_0_2px_8px_rgba(0,0,0,0.5)] border border-[--border]">
+              <div className="bg-[--surface] relative h-48 w-48 rounded-full p-1 shadow-[inset_0_2px_8px_rgba(0,0,0,0.1)] dark:shadow-[inset_0_2px_8px_rgba(0,0,0,0.5)] border border-[--border]">
                 <div className="h-full w-full overflow-hidden rounded-full shadow-[inset_0_0_12px_rgba(0,0,0,0.05)] dark:shadow-[inset_0_0_12px_rgba(0,0,0,0.3)]">
                   <Orb
                     colors={ORB_COLORS}
