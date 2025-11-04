@@ -27,30 +27,30 @@ export default function Home() {
       <div className={`fixed inset-x-0 top-0 z-50 p-[--space] transition-transform duration-350 ${
         scrolled ? "translate-y-0" : "translate-y-0"
       }`}>
-        <div className="h-[--header-h] flex items-center justify-between gap-[--space] max-w-[--maxw] mx-auto px-[--space] border border-[--border] rounded-full backdrop-blur-md bg-[--surface]/70 shadow-[0_0_0_1px_var(--ring)_inset,0_10px_30px_-20px_rgba(0,0,0,0.6)]">
-          <a href="#hero" className="px-3 py-1.5 text-purple-300 font-bold tracking-wider border border-[--border] rounded-full">
+        <div className="min-h-[--header-h] py-2 md:py-0 md:h-[--header-h] flex items-center justify-center md:justify-between gap-[--space] max-w-[--maxw] mx-auto px-[--space] border border-[--border] rounded-full backdrop-blur-md bg-[--surface]/70 shadow-[0_0_0_1px_var(--ring)_inset,0_10px_30px_-20px_rgba(0,0,0,0.6)]">
+          <a href="#hero" className="px-3 py-1.5 text-purple-300 font-bold tracking-wider border border-[--border] rounded-full hidden md:block">
             JI
           </a>
-          <nav className="flex items-center gap-[clamp(10px,3vw,22px)]">
-            <a href="#hero" className="px-2.5 py-2 rounded-[10px] text-[--muted] hover:text-[--text] hover:bg-white/5 hover:no-underline">
+          <nav className="flex items-center gap-[clamp(4px,1vw,12px)] flex-wrap justify-center text-xs md:text-base">
+            <a href="#hero" className="px-1.5 py-1 md:px-2.5 md:py-2 rounded-[10px] text-[--muted] hover:text-[--text] hover:bg-white/5 hover:no-underline">
               {getTranslation(language, "home")}
             </a>
-            <a href="#about" className="px-2.5 py-2 rounded-[10px] text-[--muted] hover:text-[--text] hover:bg-white/5 hover:no-underline">
+            <a href="#about" className="px-1.5 py-1 md:px-2.5 md:py-2 rounded-[10px] text-[--muted] hover:text-[--text] hover:bg-white/5 hover:no-underline">
               {getTranslation(language, "about")}
             </a>
-            <a href="#experience" className="px-2.5 py-2 rounded-[10px] text-[--muted] hover:text-[--text] hover:bg-white/5 hover:no-underline">
+            <a href="#experience" className="px-1.5 py-1 md:px-2.5 md:py-2 rounded-[10px] text-[--muted] hover:text-[--text] hover:bg-white/5 hover:no-underline">
               {getTranslation(language, "experience")}
             </a>
-            <a href="#skills" className="px-2.5 py-2 rounded-[10px] text-[--muted] hover:text-[--text] hover:bg-white/5 hover:no-underline">
+            <a href="#skills" className="px-1.5 py-1 md:px-2.5 md:py-2 rounded-[10px] text-[--muted] hover:text-[--text] hover:bg-white/5 hover:no-underline">
               {getTranslation(language, "skillsTitle")}
             </a>
-            <a href="#projects" className="px-2.5 py-2 rounded-[10px] text-[--muted] hover:text-[--text] hover:bg-white/5 hover:no-underline">
+            <a href="#projects" className="px-1.5 py-1 md:px-2.5 md:py-2 rounded-[10px] text-[--muted] hover:text-[--text] hover:bg-white/5 hover:no-underline">
               {getTranslation(language, "projectsTitle")}
             </a>
-            <a href="#agent" className="px-2.5 py-2 rounded-[10px] text-[--muted] hover:text-[--text] hover:bg-white/5 hover:no-underline">
+            <a href="#agent" className="px-1.5 py-1 md:px-2.5 md:py-2 rounded-[10px] text-[--muted] hover:text-[--text] hover:bg-white/5 hover:no-underline">
               {getTranslation(language, "talkToMe")}
             </a>
-            <a href="#contact" className="px-2.5 py-2 rounded-[10px] text-[--muted] hover:text-[--text] hover:bg-white/5 hover:no-underline">
+            <a href="#contact" className="px-1.5 py-1 md:px-2.5 md:py-2 rounded-[10px] text-[--muted] hover:text-[--text] hover:bg-white/5 hover:no-underline">
               {getTranslation(language, "contact")}
             </a>
             <LanguageSwitcher />
@@ -207,7 +207,7 @@ export default function Home() {
       {/* Skills Section */}
       <section id="skills" className="max-w-[--maxw] mx-auto px-[--space] py-20 border-t border-[--border]">
         <h2 className="text-3xl font-bold mb-12 text-[#38BDF8]">{getTranslation(language, "skillsTitle")}</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {/* Frontend */}
           <div>
             <h3 className="text-xl font-semibold mb-4 text-[--text]">{getTranslation(language, "skillsFrontend")}</h3>
@@ -257,7 +257,7 @@ export default function Home() {
           <div>
             <h3 className="text-xl font-semibold mb-4 text-[--text]">{getTranslation(language, "skillsDataEngineering")}</h3>
             <div className="flex flex-wrap gap-2">
-              {["SQL", "Data Engineering", "Data Pipelines", "Power BI", "Streamlit", "Databricks", "Snowflake", "Azure Synapse"].map((skill, idx) => (
+              {["SQL", "Data Pipelines", "Power BI", "Streamlit", "Databricks", "Snowflake", "Azure Synapse"].map((skill, idx) => (
                 <span
                   key={idx}
                   className="px-3 py-1 bg-[--surface] text-[--text] rounded-full text-xs border border-[--border]"
@@ -288,6 +288,21 @@ export default function Home() {
             <h3 className="text-xl font-semibold mb-4 text-[--text]">{getTranslation(language, "skillsTools")}</h3>
             <div className="flex flex-wrap gap-2">
               {["Git", "Docker", "MySQL", "PostgreSQL", "MCP", "n8n", "ElevenLabs", "OpenAI Whisper"].map((skill, idx) => (
+                <span
+                  key={idx}
+                  className="px-3 py-1 bg-[--surface] text-[--text] rounded-full text-xs border border-[--border]"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Soft Skills */}
+          <div>
+            <h3 className="text-xl font-semibold mb-4 text-[--text]">{getTranslation(language, "skillsSoftSkills")}</h3>
+            <div className="flex flex-wrap gap-2">
+              {["Mentoring", "Communication", "Problem Solving", "Adaptability"].map((skill, idx) => (
                 <span
                   key={idx}
                   className="px-3 py-1 bg-[--surface] text-[--text] rounded-full text-xs border border-[--border]"

@@ -10,14 +10,14 @@ export const translations = {
     
     // Hero
     subtitle: 'AI & Data Engineer',
-    description: 'I build intelligent systems that help businesses solve real-world problems across various industries including healthcare, education, finance, logistics, and more.',
+    description: 'I build intelligent systems that help businesses solve real-world problems across various industries including healthcare, education, finance, marketing, and more.',
     viewProjects: 'View Projects',
     downloadCV: 'Download CV',
     
     // About
     aboutTitle: 'About Me',
     about1: "Hey, I'm John - an AI & Data Engineer passionate about building intelligent systems that make a real impact. With experience across multiple industries, I bring diverse expertise to every project.",
-    about2: "When I'm not coding, I'm mentoring others in data/AI careers, playing FIFA, or traveling to explore new cultures. Continuous learning and adaptability are what drive me.",
+    about2: "When I'm not coding, I'm mentoring others in data/AI careers, spending time with family, or traveling to explore new cultures. Continuous learning and adaptability are what drive me.",
     technologies: 'Technologies',
     skills: 'Skills',
     skillsTitle: 'Skills',
@@ -27,6 +27,7 @@ export const translations = {
     skillsDataEngineering: 'Data Engineering',
     skillsCloud: 'Cloud',
     skillsTools: 'Tools',
+    skillsSoftSkills: 'Soft Skills',
     
     // Experience
     experienceTitle: 'Work Experience',
@@ -110,14 +111,14 @@ export const translations = {
     
     // Hero
     subtitle: 'KI & Dateningenieur',
-    description: 'Ich erstelle intelligente Systeme, die Unternehmen dabei helfen, reale Probleme in verschiedenen Branchen wie Gesundheitswesen, Bildung, Finanzen, Logistik und mehr zu lösen.',
+    description: 'Ich erstelle intelligente Systeme, die Unternehmen dabei helfen, reale Probleme in verschiedenen Branchen wie Gesundheitswesen, Bildung, Finanzen, Marketing und mehr zu lösen.',
     viewProjects: 'Projekte Ansehen',
     downloadCV: 'Lebenslauf Herunterladen',
     
     // About
     aboutTitle: 'Über Mich',
     about1: 'Hallo, ich bin John - ein KI- und Dateningenieur, der sich für den Aufbau intelligenter Systeme einsetzt, die einen echten Einfluss haben. Mit Erfahrung in verschiedenen Branchen bringe ich vielfältige Expertise in jedes Projekt ein.',
-    about2: 'Wenn ich nicht programmiere, betreue ich andere in Karrieren im Bereich Daten/KI, spiele FIFA oder reise, um neue Kulturen zu erkunden. Kontinuierliches Lernen und Anpassungsfähigkeit sind das, was mich antreibt.',
+    about2: 'Wenn ich nicht programmiere, betreue ich andere in Karrieren im Bereich Daten/KI, verbringe Zeit mit meiner Familie oder reise, um neue Kulturen zu erkunden. Kontinuierliches Lernen und Anpassungsfähigkeit sind das, was mich antreibt.',
     technologies: 'Technologien',
     skills: 'Fähigkeiten',
     skillsTitle: 'Fähigkeiten',
@@ -127,6 +128,7 @@ export const translations = {
     skillsDataEngineering: 'Datenengineering',
     skillsCloud: 'Cloud',
     skillsTools: 'Werkzeuge',
+    skillsSoftSkills: 'Soft Skills',
     
     // Experience
     experienceTitle: 'Berufserfahrung',
