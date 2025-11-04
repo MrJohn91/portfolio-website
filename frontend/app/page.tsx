@@ -227,7 +227,7 @@ export default function Home() {
           <div>
             <h3 className="text-xl font-semibold mb-4 text-[--text]">{getTranslation(language, "skillsBackend")}</h3>
             <div className="flex flex-wrap gap-2">
-              {["Python", "FastAPI", "Google Gemini ADK", "Pydantic", "Flask"].map((skill, idx) => (
+              {["Python", "FastAPI", "CI/CD", "Pydantic", "Flask"].map((skill, idx) => (
                 <span
                   key={idx}
                   className="px-3 py-1 bg-[--surface] text-[--text] rounded-full text-xs border border-[--border]"
@@ -257,7 +257,7 @@ export default function Home() {
           <div>
             <h3 className="text-xl font-semibold mb-4 text-[--text]">{getTranslation(language, "skillsDataEngineering")}</h3>
             <div className="flex flex-wrap gap-2">
-              {["SQL", "Data Pipelines", "Power BI", "Streamlit", "Databricks", "Snowflake", "Azure Synapse"].map((skill, idx) => (
+              {["SQL", "Data Pipelines", "Power BI", "Streamlit", "Databricks", "Snowflake", "Azure Synapse", "Microsoft Fabric"].map((skill, idx) => (
                 <span
                   key={idx}
                   className="px-3 py-1 bg-[--surface] text-[--text] rounded-full text-xs border border-[--border]"
@@ -272,7 +272,7 @@ export default function Home() {
           <div>
             <h3 className="text-xl font-semibold mb-4 text-[--text]">{getTranslation(language, "skillsCloud")}</h3>
             <div className="flex flex-wrap gap-2">
-              {["AWS", "GCP", "Azure", "Vercel", "Microsoft Fabrics"].map((skill, idx) => (
+              {["AWS", "GCP", "Azure", "Vercel"].map((skill, idx) => (
                 <span
                   key={idx}
                   className="px-3 py-1 bg-[--surface] text-[--text] rounded-full text-xs border border-[--border]"
@@ -287,7 +287,7 @@ export default function Home() {
           <div>
             <h3 className="text-xl font-semibold mb-4 text-[--text]">{getTranslation(language, "skillsTools")}</h3>
             <div className="flex flex-wrap gap-2">
-              {["Git", "Docker", "MySQL", "PostgreSQL", "MCP", "n8n", "ElevenLabs", "OpenAI Whisper"].map((skill, idx) => (
+              {["Git", "Docker", "MySQL", "PostgreSQL", "MCP", "n8n", "Supabase", "OpenAI Whisper"].map((skill, idx) => (
                 <span
                   key={idx}
                   className="px-3 py-1 bg-[--surface] text-[--text] rounded-full text-xs border border-[--border]"
@@ -320,11 +320,9 @@ export default function Home() {
         <h2 className="text-3xl font-bold mb-12 text-[#38BDF8]">{getTranslation(language, "projectsTitle")}</h2>
         <div className="space-y-8">
           <article className="group">
-            <h3 className="text-2xl font-semibold mb-2">Private Enterprise AI Agent</h3>
+            <h3 className="text-2xl font-semibold mb-2">{getTranslation(language, "project1Title")}</h3>
             <p className="text-[--muted] leading-relaxed mb-3">
-              Self-hosted AI agent with secure private web search for complete data sovereignty. Enterprise-grade solution with SearXNG 
-              integration, Supabase conversation storage, and OpenAI-compatible API. Deployed on GPU infrastructure with qwen2.5:7b and mistral:7b models. 
-              Full compliance with GDPR, HIPAA, SOX regulations. Zero external data transmission.
+              {getTranslation(language, "project1Description")}
             </p>
             <a 
               href="https://github.com/MrJohn91/ai_local_websearchtool" 
@@ -332,16 +330,14 @@ export default function Home() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-white hover:text-purple-300"
             >
-              View Project →
+              {getTranslation(language, "viewProject")} →
             </a>
           </article>
 
           <article className="group">
-            <h3 className="text-2xl font-semibold mb-2">Attribution Pipeline Orchestration</h3>
+            <h3 className="text-2xl font-semibold mb-2">{getTranslation(language, "project2Title")}</h3>
             <p className="text-[--muted] leading-relaxed mb-3">
-              Automated marketing attribution pipeline using IHC model for multi-touch attribution. Orchestrated with Apache Airflow 
-              for daily processing. Analyzes customer journeys across Initializer, Holder, and Closer phases. Built with Python, Pandas, 
-              SQLite, and external Attribution API. Calculates ROAS and CPO metrics for data-driven marketing decisions.
+              {getTranslation(language, "project2Description")}
             </p>
             <a 
               href="https://github.com/MrJohn91/Attribution-Pipeline-Orchestration" 
@@ -349,16 +345,14 @@ export default function Home() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-white hover:text-purple-300"
             >
-              View Project →
+              {getTranslation(language, "viewProject")} →
             </a>
           </article>
 
           <article className="group">
-            <h3 className="text-2xl font-semibold mb-2">Snowflake MCP Integration</h3>
+            <h3 className="text-2xl font-semibold mb-2">{getTranslation(language, "project3Title")}</h3>
             <p className="text-[--muted] leading-relaxed mb-3">
-              Model Context Protocol (MCP) server for seamless Snowflake database integration. Enables AI agents 
-              to query and analyze data through natural language. Built with Python, demonstrating advanced 
-              LLM orchestration and data engineering.
+              {getTranslation(language, "project3Description")}
             </p>
             <a 
               href="https://github.com/MrJohn91/snowflake-mcp-server-agent" 
@@ -366,16 +360,14 @@ export default function Home() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-white hover:text-purple-300"
             >
-              View Project →
+              {getTranslation(language, "viewProject")} →
             </a>
           </article>
 
           <article className="group">
-            <h3 className="text-2xl font-semibold mb-2">AI-Powered Portfolio Agent</h3>
+            <h3 className="text-2xl font-semibold mb-2">{getTranslation(language, "project4Title")}</h3>
             <p className="text-[--muted] leading-relaxed mb-3">
-              A voice-enabled AI agent using Google ADK with Gemini 2.0. Features real-time conversation, 
-              Notion CMS integration, GitHub project search, and ElevenLabs voice cloning. Built with Python, 
-              Next.js, and Three.js for immersive 3D visualization.
+              {getTranslation(language, "project4Description")}
             </p>
             <a 
               href="https://github.com/MrJohn91/portfolio-website" 
@@ -383,7 +375,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-white hover:text-purple-300"
             >
-              View Project →
+              {getTranslation(language, "viewProject")} →
             </a>
           </article>
         </div>

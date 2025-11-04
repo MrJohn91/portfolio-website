@@ -72,6 +72,15 @@ export const translations = {
     
     // Projects
     projectsTitle: 'Projects',
+    project1Title: 'Private Enterprise AI Agent',
+    project1Description: 'Self-hosted AI agent with secure private web search for complete data sovereignty. Enterprise-grade solution with SearXNG integration, Supabase conversation storage, and OpenAI-compatible API. Deployed on GPU infrastructure with qwen2.5:7b and mistral:7b models. Full compliance with GDPR, HIPAA, SOX regulations. Zero external data transmission.',
+    project2Title: 'Attribution Pipeline Orchestration',
+    project2Description: 'Automated marketing attribution pipeline using IHC model for multi-touch attribution. Orchestrated with Apache Airflow for daily processing. Analyzes customer journeys across Initializer, Holder, and Closer phases. Built with Python, Pandas, SQLite, and external Attribution API. Calculates ROAS and CPO metrics for data-driven marketing decisions.',
+    project3Title: 'Snowflake MCP Integration',
+    project3Description: 'Model Context Protocol (MCP) server for seamless Snowflake database integration. Enables AI agents to query and analyze data through natural language. Built with Python, demonstrating advanced LLM orchestration and data engineering.',
+    project4Title: 'AI-Powered Portfolio Agent',
+    project4Description: 'A voice-enabled AI agent using Google ADK and LiveKit Agents Framework. Features real-time conversation, Notion CMS integration, GitHub project search, and ElevenLabs voice cloning. Built with Python, Next.js, and Three.js for immersive 3D visualization.',
+    viewProject: 'View Project',
     
     // Agent
     agentSubtitle: 'Interactive AI Agent',
@@ -173,6 +182,15 @@ export const translations = {
     
     // Projects
     projectsTitle: 'Projekte',
+    project1Title: 'Privater Unternehmens-KI-Agent',
+    project1Description: 'Selbst gehosteter KI-Agent mit sicherer privater Websuche für vollständige Datensouveränität. Enterprise-Lösung mit SearXNG-Integration, Supabase-Gesprächsspeicherung und OpenAI-kompatibler API. Bereitgestellt auf GPU-Infrastruktur mit qwen2.5:7b und mistral:7b Modellen. Vollständige Einhaltung von GDPR, HIPAA, SOX Vorschriften. Keine externe Datenübertragung.',
+    project2Title: 'Attribution-Pipeline-Orchestrierung',
+    project2Description: 'Automatisierte Marketing-Attribution-Pipeline mit IHC-Modell für Multi-Touch-Attribution. Orchestriert mit Apache Airflow für tägliche Verarbeitung. Analysiert Kundenreisen über Initialisierungs-, Halte- und Abschlussphasen. Entwickelt mit Python, Pandas, SQLite und externer Attribution-API. Berechnet ROAS- und CPO-Metriken für datengesteuerte Marketing-Entscheidungen.',
+    project3Title: 'Snowflake MCP Integration',
+    project3Description: 'Model Context Protocol (MCP) Server für nahtlose Snowflake-Datenbankintegration. Ermöglicht es KI-Agenten, Daten über natürliche Sprache abzufragen und zu analysieren. Entwickelt mit Python und demonstriert fortgeschrittene LLM-Orchestrierung und Datenengineering.',
+    project4Title: 'KI-gestützter Portfolio-Agent',
+    project4Description: 'Ein sprachaktivierter KI-Agent mit Google ADK und LiveKit Agents Framework. Features: Echtzeit-Gespräche, Notion CMS-Integration, GitHub-Projektsuche und ElevenLabs-Stimmklonierung. Entwickelt mit Python, Next.js und Three.js für immersive 3D-Visualisierung.',
+    viewProject: 'Projekt Ansehen',
     
     // Agent
     agentSubtitle: 'Interaktiver KI-Agent',
