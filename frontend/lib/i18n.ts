@@ -5,7 +5,7 @@ export const translations = {
     // Header
     home: 'Home',
     about: 'About',
-    talkToMe: 'Talk to Me',
+    talkToMe: 'Talk to John',
     contact: 'Contact',
     
     // Hero
@@ -115,7 +115,7 @@ export const translations = {
     // Header
     home: 'Startseite',
     about: 'Über Mich',
-    talkToMe: 'Sprechen',
+    talkToMe: 'Mit John Sprechen',
     contact: 'Kontakt',
     
     // Hero
