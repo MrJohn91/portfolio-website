@@ -77,9 +77,9 @@ export const translations = {
     project2Title: 'Attribution Pipeline Orchestration',
     project2Description: 'Automated marketing attribution pipeline using IHC model for multi-touch attribution. Orchestrated with Apache Airflow for daily processing. Analyzes customer journeys across Initializer, Holder, and Closer phases. Built with Python, Pandas, SQLite, and external Attribution API. Calculates ROAS and CPO metrics for data-driven marketing decisions.',
     project3Title: 'Snowflake MCP Integration',
-    project3Description: 'Model Context Protocol (MCP) server for seamless Snowflake database integration. Enables AI agents to query and analyze data through natural language. Built with Python, demonstrating advanced LLM orchestration and data engineering.',
+    project3Description: 'A Customized Model Context Protocol (MCP) for seamless Snowflake database integration. Enables AI agents to query and analyze data through natural language. Built with Python, demonstrating advanced LLM orchestration and data engineering.',
     project4Title: 'AI-Powered Portfolio Agent',
-    project4Description: 'A voice-enabled AI agent using Google ADK and LiveKit Agents Framework. Features real-time conversation, Notion CMS integration, GitHub project search, and ElevenLabs voice cloning. Built with Python, Next.js, and Three.js for immersive 3D visualization.',
+    project4Description: 'A voice-enabled portfolio AI agent that provides current projects and resume details by pulling updated information from Notion database. Enables real-time conversation with dynamic content access through Notion CMS integration and GitHub project search, allowing the agent to perform searches and take action. Automatically collects and saves visitor information including name, email, phone number, and conversation summaries directly to Notion, enabling seamless tracking of potential collaborators and leads. Features voice cloning for natural engagement and immersive user experience. Built with Python, Google ADK, LiveKit Agents Framework, Next.js, and Three.js for immersive 3D visualization.',
     viewProject: 'View Project',
     
     // Agent
@@ -187,9 +187,9 @@ export const translations = {
     project2Title: 'Attribution-Pipeline-Orchestrierung',
     project2Description: 'Automatisierte Marketing-Attribution-Pipeline mit IHC-Modell für Multi-Touch-Attribution. Orchestriert mit Apache Airflow für tägliche Verarbeitung. Analysiert Kundenreisen über Initialisierungs-, Halte- und Abschlussphasen. Entwickelt mit Python, Pandas, SQLite und externer Attribution-API. Berechnet ROAS- und CPO-Metriken für datengesteuerte Marketing-Entscheidungen.',
     project3Title: 'Snowflake MCP Integration',
-    project3Description: 'Model Context Protocol (MCP) Server für nahtlose Snowflake-Datenbankintegration. Ermöglicht es KI-Agenten, Daten über natürliche Sprache abzufragen und zu analysieren. Entwickelt mit Python und demonstriert fortgeschrittene LLM-Orchestrierung und Datenengineering.',
+    project3Description: 'Ein angepasstes Model Context Protocol (MCP) für nahtlose Snowflake-Datenbankintegration. Ermöglicht es KI-Agenten, Daten über natürliche Sprache abzufragen und zu analysieren. Entwickelt mit Python und demonstriert fortgeschrittene LLM-Orchestrierung und Datenengineering.',
     project4Title: 'KI-gestützter Portfolio-Agent',
-    project4Description: 'Ein sprachaktivierter KI-Agent mit Google ADK und LiveKit Agents Framework. Features: Echtzeit-Gespräche, Notion CMS-Integration, GitHub-Projektsuche und ElevenLabs-Stimmklonierung. Entwickelt mit Python, Next.js und Three.js für immersive 3D-Visualisierung.',
+    project4Description: 'Ein sprachaktivierter Portfolio-KI-Agent, der aktuelle Projekte und Lebenslaufdetails bereitstellt, indem er aktualisierte Informationen aus der Notion-Datenbank abruft. Ermöglicht Echtzeit-Gespräche mit Zugriff auf dynamische Inhalte durch Notion CMS-Integration und GitHub-Projektsuche, sodass der Agent Suchen durchführen und Maßnahmen ergreifen kann. Sammelt und speichert automatisch Besucherinformationen einschließlich Name, E-Mail, Telefonnummer und Gesprächszusammenfassungen direkt in Notion, was eine nahtlose Verfolgung potenzieller Mitarbeiter und Leads ermöglicht. Features Stimmklonierung für natürliches Engagement und immersive Benutzererfahrung. Entwickelt mit Python, Google ADK, LiveKit Agents Framework, Next.js und Three.js für immersive 3D-Visualisierung.',
     viewProject: 'Projekt Ansehen',
     
     // Agent
