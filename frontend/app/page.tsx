@@ -7,6 +7,7 @@ import { LanguageSwitcher } from "@/components/language-switcher"
 import { ParticleBackground } from "@/components/particle-background"
 import { useLanguage } from "@/lib/language-context"
 import { getTranslation } from "@/lib/i18n"
+import { Card, CardHeader, CardTitle, CardContent, CardDescription, CardFooter } from "@/components/ui/card"
 
 export default function Home() {
   const { language } = useLanguage()
@@ -70,7 +71,7 @@ export default function Home() {
           <div className="flex justify-center flex-wrap gap-4 mt-8">
             <a
               href="#projects"
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#64FFDA] via-purple-500 to-blue-400 text-white rounded-2xl font-semibold hover:scale-105 transition-all duration-300 no-underline"
+              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#A8D5E2] via-[#B8A9D4] to-[#C4B5E8] text-[#1A1A1A] rounded-2xl font-semibold hover:opacity-90 transition-all duration-300 no-underline shadow-sm"
             >
               {getTranslation(language, "viewProjects")}
             </a>
@@ -207,177 +208,249 @@ export default function Home() {
       {/* Skills Section */}
       <section id="skills" className="max-w-[--maxw] mx-auto px-[--space] py-20 border-t border-[--border]">
         <h2 className="text-3xl font-bold mb-12 text-[#38BDF8]">{getTranslation(language, "skillsTitle")}</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {/* Frontend */}
-          <div>
-            <h3 className="text-xl font-semibold mb-4 text-[--text]">{getTranslation(language, "skillsFrontend")}</h3>
-            <div className="flex flex-wrap gap-2">
-              {["Next.js 14", "TypeScript", "Tailwind CSS", "React", "shadcn/ui", "Framer Motion", "ESLint"].map((skill, idx) => (
-                <span
-                  key={idx}
-                  className="px-3 py-1 bg-[--surface] text-[--text] rounded-full text-xs border border-[--border]"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </div>
+          <Card className="group cursor-pointer">
+            <CardHeader className="pb-3">
+              <CardTitle className="mb-0">{getTranslation(language, "skillsFrontend")}</CardTitle>
+            </CardHeader>
+            <CardContent className="pt-0">
+              <div className="flex flex-wrap gap-2.5">
+                {["Next.js 14", "TypeScript", "Tailwind CSS", "React", "shadcn/ui"].map((skill, idx) => (
+                  <button
+                    key={idx}
+                    className="px-4 py-2 bg-[--bg] text-[--text] rounded-lg text-sm font-medium border border-[--border] hover:border-[--brand] hover:bg-gradient-to-r hover:from-[rgba(100,255,218,0.1)] hover:to-transparent hover:text-[#64FFDA] transition-all duration-200 hover:scale-105 active:scale-95"
+                  >
+                    {skill}
+                  </button>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Backend */}
-          <div>
-            <h3 className="text-xl font-semibold mb-4 text-[--text]">{getTranslation(language, "skillsBackend")}</h3>
-            <div className="flex flex-wrap gap-2">
-              {["Python", "FastAPI", "CI/CD", "Pydantic", "Flask"].map((skill, idx) => (
-                <span
-                  key={idx}
-                  className="px-3 py-1 bg-[--surface] text-[--text] rounded-full text-xs border border-[--border]"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </div>
+          <Card className="group cursor-pointer">
+            <CardHeader className="pb-3">
+              <CardTitle className="mb-0">{getTranslation(language, "skillsBackend")}</CardTitle>
+            </CardHeader>
+            <CardContent className="pt-0">
+              <div className="flex flex-wrap gap-2.5">
+                {["Python", "FastAPI", "CI/CD", "Pydantic", "Flask"].map((skill, idx) => (
+                  <button
+                    key={idx}
+                    className="px-4 py-2 bg-[--bg] text-[--text] rounded-lg text-sm font-medium border border-[--border] hover:border-[--brand] hover:bg-gradient-to-r hover:from-[rgba(100,255,218,0.1)] hover:to-transparent hover:text-[#64FFDA] transition-all duration-200 hover:scale-105 active:scale-95"
+                  >
+                    {skill}
+                  </button>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
 
           {/* AI/ML */}
-          <div>
-            <h3 className="text-xl font-semibold mb-4 text-[--text]">{getTranslation(language, "skillsAIML")}</h3>
-            <div className="flex flex-wrap gap-2">
-              {["Machine Learning", "NLP", "AI Agents", "AI Automation", "TensorFlow", "Keras", "PyTorch"].map((skill, idx) => (
-                <span
-                  key={idx}
-                  className="px-3 py-1 bg-[--surface] text-[--text] rounded-full text-xs border border-[--border]"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </div>
+          <Card className="group cursor-pointer">
+            <CardHeader className="pb-3">
+              <CardTitle className="mb-0">{getTranslation(language, "skillsAIML")}</CardTitle>
+            </CardHeader>
+            <CardContent className="pt-0">
+              <div className="flex flex-wrap gap-2.5">
+                {["Machine Learning", "NLP", "AI Agents", "AI Automation", "TensorFlow", "Keras", "PyTorch"].map((skill, idx) => (
+                  <button
+                    key={idx}
+                    className="px-4 py-2 bg-[--bg] text-[--text] rounded-lg text-sm font-medium border border-[--border] hover:border-[--brand] hover:bg-gradient-to-r hover:from-[rgba(100,255,218,0.1)] hover:to-transparent hover:text-[#64FFDA] transition-all duration-200 hover:scale-105 active:scale-95"
+                  >
+                    {skill}
+                  </button>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Data Engineering */}
-          <div>
-            <h3 className="text-xl font-semibold mb-4 text-[--text]">{getTranslation(language, "skillsDataEngineering")}</h3>
-            <div className="flex flex-wrap gap-2">
-              {["SQL", "Data Pipelines", "Power BI", "Streamlit", "Databricks", "Snowflake", "Azure Synapse", "Microsoft Fabric"].map((skill, idx) => (
-                <span
-                  key={idx}
-                  className="px-3 py-1 bg-[--surface] text-[--text] rounded-full text-xs border border-[--border]"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </div>
+          <Card className="group cursor-pointer">
+            <CardHeader className="pb-3">
+              <CardTitle className="mb-0">{getTranslation(language, "skillsDataEngineering")}</CardTitle>
+            </CardHeader>
+            <CardContent className="pt-0">
+              <div className="flex flex-wrap gap-2.5">
+                {["SQL", "Data Pipelines", "Power BI", "Streamlit", "Databricks", "Snowflake", "Azure Synapse", "Microsoft Fabric"].map((skill, idx) => (
+                  <button
+                    key={idx}
+                    className="px-4 py-2 bg-[--bg] text-[--text] rounded-lg text-sm font-medium border border-[--border] hover:border-[--brand] hover:bg-gradient-to-r hover:from-[rgba(100,255,218,0.1)] hover:to-transparent hover:text-[#64FFDA] transition-all duration-200 hover:scale-105 active:scale-95"
+                  >
+                    {skill}
+                  </button>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Cloud */}
-          <div>
-            <h3 className="text-xl font-semibold mb-4 text-[--text]">{getTranslation(language, "skillsCloud")}</h3>
-            <div className="flex flex-wrap gap-2">
-              {["AWS", "GCP", "Azure", "Vercel"].map((skill, idx) => (
-                <span
-                  key={idx}
-                  className="px-3 py-1 bg-[--surface] text-[--text] rounded-full text-xs border border-[--border]"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </div>
+          <Card className="group cursor-pointer">
+            <CardHeader className="pb-3">
+              <CardTitle className="mb-0">{getTranslation(language, "skillsCloud")}</CardTitle>
+            </CardHeader>
+            <CardContent className="pt-0">
+              <div className="flex flex-wrap gap-2.5">
+                {["AWS", "GCP", "Azure", "Vercel"].map((skill, idx) => (
+                  <button
+                    key={idx}
+                    className="px-4 py-2 bg-[--bg] text-[--text] rounded-lg text-sm font-medium border border-[--border] hover:border-[--brand] hover:bg-gradient-to-r hover:from-[rgba(100,255,218,0.1)] hover:to-transparent hover:text-[#64FFDA] transition-all duration-200 hover:scale-105 active:scale-95"
+                  >
+                    {skill}
+                  </button>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Tools */}
-          <div>
-            <h3 className="text-xl font-semibold mb-4 text-[--text]">{getTranslation(language, "skillsTools")}</h3>
-            <div className="flex flex-wrap gap-2">
-              {["Git", "Docker", "MySQL", "PostgreSQL", "MCP", "n8n", "Supabase", "OpenAI Whisper"].map((skill, idx) => (
-                <span
-                  key={idx}
-                  className="px-3 py-1 bg-[--surface] text-[--text] rounded-full text-xs border border-[--border]"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </div>
+          <Card className="group cursor-pointer">
+            <CardHeader className="pb-3">
+              <CardTitle className="mb-0">{getTranslation(language, "skillsTools")}</CardTitle>
+            </CardHeader>
+            <CardContent className="pt-0">
+              <div className="flex flex-wrap gap-2.5">
+                {["Git", "Docker", "MySQL", "PostgreSQL", "MCP", "n8n", "Supabase", "OpenAI Whisper"].map((skill, idx) => (
+                  <button
+                    key={idx}
+                    className="px-4 py-2 bg-[--bg] text-[--text] rounded-lg text-sm font-medium border border-[--border] hover:border-[--brand] hover:bg-gradient-to-r hover:from-[rgba(100,255,218,0.1)] hover:to-transparent hover:text-[#64FFDA] transition-all duration-200 hover:scale-105 active:scale-95"
+                  >
+                    {skill}
+                  </button>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Soft Skills */}
-          <div>
-            <h3 className="text-xl font-semibold mb-4 text-[--text]">{getTranslation(language, "skillsSoftSkills")}</h3>
-            <div className="flex flex-wrap gap-2">
-              {["Mentoring", "Communication", "Problem Solving", "Adaptability"].map((skill, idx) => (
-                <span
-                  key={idx}
-                  className="px-3 py-1 bg-[--surface] text-[--text] rounded-full text-xs border border-[--border]"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </div>
+          <Card className="group cursor-pointer">
+            <CardHeader className="pb-3">
+              <CardTitle className="mb-0">{getTranslation(language, "skillsSoftSkills")}</CardTitle>
+            </CardHeader>
+            <CardContent className="pt-0">
+              <div className="flex flex-wrap gap-2.5">
+                {["Mentoring", "Communication", "Problem Solving", "Adaptability"].map((skill, idx) => (
+                  <button
+                    key={idx}
+                    className="px-4 py-2 bg-[--bg] text-[--text] rounded-lg text-sm font-medium border border-[--border] hover:border-[--brand] hover:bg-gradient-to-r hover:from-[rgba(100,255,218,0.1)] hover:to-transparent hover:text-[#64FFDA] transition-all duration-200 hover:scale-105 active:scale-95"
+                  >
+                    {skill}
+                  </button>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
       {/* Projects Section */}
       <section id="projects" className="max-w-[--maxw] mx-auto px-[--space] py-20 border-t border-[--border]">
         <h2 className="text-3xl font-bold mb-12 text-[#38BDF8]">{getTranslation(language, "projectsTitle")}</h2>
-        <div className="space-y-8">
-          <article className="group">
-            <h3 className="text-2xl font-semibold mb-2">{getTranslation(language, "project1Title")}</h3>
-            <p className="text-[--muted] leading-relaxed mb-3">
-              {getTranslation(language, "project1Description")}
-            </p>
-            <a 
-              href="https://github.com/MrJohn91/ai_local_websearchtool" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-white hover:text-purple-300"
-            >
-              {getTranslation(language, "viewProject")} →
-            </a>
-          </article>
+        <div className="grid md:grid-cols-2 gap-6">
+          {/* Project 1 */}
+          <Card className="group cursor-pointer flex flex-col">
+            <CardHeader>
+              <CardTitle className="text-2xl">{getTranslation(language, "project1Title")}</CardTitle>
+            </CardHeader>
+            <CardContent className="flex-1">
+              <CardDescription className="text-[--muted] leading-relaxed mb-4">
+                {getTranslation(language, "project1Description")}
+              </CardDescription>
+            </CardContent>
+            <CardFooter>
+              <a 
+                href="https://github.com/MrJohn91/ai_local_websearchtool" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#A8D5E2] via-[#B8A9D4] to-[#C4B5E8] text-[#1A1A1A] rounded-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-sm"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {getTranslation(language, "viewProject")}
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </CardFooter>
+          </Card>
 
-          <article className="group">
-            <h3 className="text-2xl font-semibold mb-2">{getTranslation(language, "project2Title")}</h3>
-            <p className="text-[--muted] leading-relaxed mb-3">
-              {getTranslation(language, "project2Description")}
-            </p>
-            <a 
-              href="https://github.com/MrJohn91/Attribution-Pipeline-Orchestration" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-white hover:text-purple-300"
-            >
-              {getTranslation(language, "viewProject")} →
-            </a>
-          </article>
+          {/* Project 2 */}
+          <Card className="group cursor-pointer flex flex-col">
+            <CardHeader>
+              <CardTitle className="text-2xl">{getTranslation(language, "project2Title")}</CardTitle>
+            </CardHeader>
+            <CardContent className="flex-1">
+              <CardDescription className="text-[--muted] leading-relaxed mb-4">
+                {getTranslation(language, "project2Description")}
+              </CardDescription>
+            </CardContent>
+            <CardFooter>
+              <a 
+                href="https://github.com/MrJohn91/Attribution-Pipeline-Orchestration" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#A8D5E2] via-[#B8A9D4] to-[#C4B5E8] text-[#1A1A1A] rounded-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-sm"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {getTranslation(language, "viewProject")}
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </CardFooter>
+          </Card>
 
-          <article className="group">
-            <h3 className="text-2xl font-semibold mb-2">{getTranslation(language, "project3Title")}</h3>
-            <p className="text-[--muted] leading-relaxed mb-3">
-              {getTranslation(language, "project3Description")}
-            </p>
-            <a 
-              href="https://github.com/MrJohn91/snowflake-mcp-server-agent" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-white hover:text-purple-300"
-            >
-              {getTranslation(language, "viewProject")} →
-            </a>
-          </article>
+          {/* Project 3 */}
+          <Card className="group cursor-pointer flex flex-col">
+            <CardHeader>
+              <CardTitle className="text-2xl">{getTranslation(language, "project3Title")}</CardTitle>
+            </CardHeader>
+            <CardContent className="flex-1">
+              <CardDescription className="text-[--muted] leading-relaxed mb-4">
+                {getTranslation(language, "project3Description")}
+              </CardDescription>
+            </CardContent>
+            <CardFooter>
+              <a 
+                href="https://github.com/MrJohn91/snowflake-mcp-server-agent" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#A8D5E2] via-[#B8A9D4] to-[#C4B5E8] text-[#1A1A1A] rounded-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-sm"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {getTranslation(language, "viewProject")}
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </CardFooter>
+          </Card>
 
-          <article className="group">
-            <h3 className="text-2xl font-semibold mb-2">{getTranslation(language, "project4Title")}</h3>
-            <p className="text-[--muted] leading-relaxed mb-3">
-              {getTranslation(language, "project4Description")}
-            </p>
-            <a 
-              href="https://github.com/MrJohn91/portfolio-website" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-white hover:text-purple-300"
-            >
-              {getTranslation(language, "viewProject")} →
-            </a>
-          </article>
+          {/* Project 4 */}
+          <Card className="group cursor-pointer flex flex-col">
+            <CardHeader>
+              <CardTitle className="text-2xl">{getTranslation(language, "project4Title")}</CardTitle>
+            </CardHeader>
+            <CardContent className="flex-1">
+              <CardDescription className="text-[--muted] leading-relaxed mb-4">
+                {getTranslation(language, "project4Description")}
+              </CardDescription>
+            </CardContent>
+            <CardFooter>
+              <a 
+                href="https://github.com/MrJohn91/portfolio-website" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#A8D5E2] via-[#B8A9D4] to-[#C4B5E8] text-[#1A1A1A] rounded-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-sm"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {getTranslation(language, "viewProject")}
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </CardFooter>
+          </Card>
         </div>
       </section>
 
