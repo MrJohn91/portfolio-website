@@ -8,11 +8,10 @@ export const metadata: Metadata = {
   description: 'AI-powered portfolio of John Igbokwe, showcasing projects, experience, and achievements',
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/favicon.ico', type: 'image/x-icon' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
     ],
-    shortcut: '/favicon.ico',
-    apple: '/favicon.ico',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
   },
 }
 
