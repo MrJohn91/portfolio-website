@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Image from "next/image"
+import { motion } from "framer-motion"
 import { VoiceChat } from "@/components/voice-chat"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { ParticleBackground } from "@/components/particle-background"
@@ -25,11 +26,12 @@ export default function Home() {
     <main className="min-h-screen relative">
       <ParticleBackground />
       {/* Fixed Header */}
-      <div className={`fixed inset-x-0 top-0 z-50 p-[--space] transition-transform duration-350 ${
-        scrolled ? "translate-y-0" : "translate-y-0"
-      }`}>
-        <div className="min-h-[--header-h] py-2 md:py-0 md:h-[--header-h] flex items-center justify-center md:justify-between gap-[--space] max-w-[--maxw] mx-auto px-[--space] border border-[--border] rounded-full backdrop-blur-md bg-[--surface]/70 shadow-[0_0_0_1px_var(--ring)_inset,0_10px_30px_-20px_rgba(0,0,0,0.6)]">
-          <a href="#hero" className="px-3 py-1.5 text-purple-300 font-bold tracking-wider border border-[--border] rounded-full hidden md:block">
+      <div className="fixed inset-x-0 top-0 z-50 p-[--space]">
+        <div className={`min-h-[--header-h] py-2 md:py-0 md:h-[--header-h] flex items-center justify-between gap-[--space] max-w-[--maxw] mx-auto px-[--space] rounded-full transition-all duration-300 ${scrolled
+          ? "bg-[--surface]/80 backdrop-blur-md border border-[--border] shadow-[0_0_0_1px_var(--ring)_inset,0_10px_30px_-20px_rgba(0,0,0,0.6)]"
+          : "bg-transparent border border-transparent"
+          }`}>
+          <a href="#hero" className="px-3 py-1.5 text-purple-300 font-bold tracking-wider border border-[--border] rounded-full block">
             JI
           </a>
           <nav className="flex items-center gap-[clamp(4px,1vw,12px)] flex-wrap justify-center text-xs md:text-base">
@@ -62,27 +64,44 @@ export default function Home() {
       {/* Hero Section */}
       <section id="hero" className="min-h-[calc(100svh-var(--header-h)-var(--space)*2)] grid place-items-center max-w-[--maxw] mx-auto px-[--space] py-[12vh] text-center relative z-10">
         <div className="space-y-6">
-          <h1 className="gradient-text text-[clamp(2.5rem,6vw,4.5rem)] leading-tight tracking-tight font-bold">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="gradient-text text-[clamp(2.5rem,6vw,4.5rem)] leading-tight tracking-tight font-bold"
+          >
             John Igbokwe
-          </h1>
-          <p className="max-w-[60ch] mx-auto text-[clamp(1.1rem,2.5vw,1.3rem)] text-gray-400 font-normal">
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="max-w-[60ch] mx-auto text-[clamp(1.1rem,2.5vw,1.3rem)] text-gray-400 font-normal"
+          >
             {getTranslation(language, "description")}
-          </p>
-          <div className="flex justify-center flex-wrap gap-4 mt-8">
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex justify-center flex-wrap gap-4 mt-8"
+          >
             <a
               href="#projects"
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#A8D5E2] via-[#B8A9D4] to-[#C4B5E8] text-[#1A1A1A] rounded-2xl font-semibold hover:opacity-90 transition-all duration-300 no-underline shadow-sm"
+              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#A8D5E2] via-[#B8A9D4] to-[#C4B5E8] text-[#1A1A1A] rounded-2xl font-semibold hover:opacity-90 transition-all duration-300 no-underline shadow-sm hover:scale-105 active:scale-95"
             >
               {getTranslation(language, "viewProjects")}
             </a>
             <a
-              href="/resume.pdf"
+              href="/John_Igbokwe_Resume.pdf"
               download="John_Igbokwe_Resume.pdf"
-              className="inline-flex items-center px-8 py-4 bg-transparent border border-[rgba(255,255,255,0.2)] text-white rounded-2xl font-semibold hover:border-[#64FFDA] hover:bg-[rgba(100,255,218,0.1)] hover:scale-105 transition-all duration-300 no-underline"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-8 py-4 bg-transparent border border-[rgba(255,255,255,0.2)] text-white rounded-2xl font-semibold hover:border-[#64FFDA] hover:bg-[rgba(100,255,218,0.1)] hover:scale-105 hover:shadow-[0_0_20px_rgba(100,255,218,0.3)] transition-all duration-300 no-underline active:scale-95 cursor-pointer"
             >
               {getTranslation(language, "downloadCV")}
             </a>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -349,21 +368,29 @@ export default function Home() {
         <h2 className="text-3xl font-bold mb-12 text-[#38BDF8]">{getTranslation(language, "projectsTitle")}</h2>
         <div className="grid md:grid-cols-2 gap-6">
           {/* Project 1 */}
-          <Card className="group cursor-pointer flex flex-col">
+          {/* Project 1 */}
+          <Card className="group cursor-pointer flex flex-col border-[--border] bg-[--surface] hover:border-[--brand] transition-all duration-300 hover:-translate-y-1">
             <CardHeader>
-              <CardTitle className="text-2xl">{getTranslation(language, "project1Title")}</CardTitle>
+              <CardTitle className="text-2xl group-hover:text-[--brand] transition-colors">{getTranslation(language, "project1Title")}</CardTitle>
             </CardHeader>
             <CardContent className="flex-1">
               <CardDescription className="text-[--muted] leading-relaxed mb-4">
                 {getTranslation(language, "project1Description")}
               </CardDescription>
+              <div className="flex flex-wrap gap-2 mt-auto">
+                {["Python", "LangChain", "Local LLMs", "OpenWebUI"].map((tech, i) => (
+                  <span key={i} className="px-2.5 py-1 text-xs font-medium rounded-full bg-[#64FFDA]/5 text-[#64FFDA]/80 border border-[#64FFDA]/15">
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </CardContent>
             <CardFooter>
-              <a 
-                href="https://github.com/MrJohn91/ai_local_websearchtool" 
-                target="_blank" 
+              <a
+                href="https://github.com/MrJohn91/ai_local_websearchtool"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#A8D5E2] via-[#B8A9D4] to-[#C4B5E8] text-[#1A1A1A] rounded-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-sm"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#A8D5E2] via-[#B8A9D4] to-[#C4B5E8] text-[#1A1A1A] rounded-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-sm w-full justify-center"
                 onClick={(e) => e.stopPropagation()}
               >
                 {getTranslation(language, "viewProject")}
@@ -375,21 +402,29 @@ export default function Home() {
           </Card>
 
           {/* Project 2 */}
-          <Card className="group cursor-pointer flex flex-col">
+          {/* Project 2 */}
+          <Card className="group cursor-pointer flex flex-col border-[--border] bg-[--surface] hover:border-[--brand] transition-all duration-300 hover:-translate-y-1">
             <CardHeader>
-              <CardTitle className="text-2xl">{getTranslation(language, "project2Title")}</CardTitle>
+              <CardTitle className="text-2xl group-hover:text-[--brand] transition-colors">{getTranslation(language, "project2Title")}</CardTitle>
             </CardHeader>
             <CardContent className="flex-1">
               <CardDescription className="text-[--muted] leading-relaxed mb-4">
                 {getTranslation(language, "project2Description")}
               </CardDescription>
+              <div className="flex flex-wrap gap-2 mt-auto">
+                {["Python", "SQL", "Data Engineering", "Orchestration"].map((tech, i) => (
+                  <span key={i} className="px-2.5 py-1 text-xs font-medium rounded-full bg-[#64FFDA]/5 text-[#64FFDA]/80 border border-[#64FFDA]/15">
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </CardContent>
             <CardFooter>
-              <a 
-                href="https://github.com/MrJohn91/Attribution-Pipeline-Orchestration" 
-                target="_blank" 
+              <a
+                href="https://github.com/MrJohn91/Attribution-Pipeline-Orchestration"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#A8D5E2] via-[#B8A9D4] to-[#C4B5E8] text-[#1A1A1A] rounded-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-sm"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#A8D5E2] via-[#B8A9D4] to-[#C4B5E8] text-[#1A1A1A] rounded-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-sm w-full justify-center"
                 onClick={(e) => e.stopPropagation()}
               >
                 {getTranslation(language, "viewProject")}
@@ -401,21 +436,29 @@ export default function Home() {
           </Card>
 
           {/* Project 3 */}
-          <Card className="group cursor-pointer flex flex-col">
+          {/* Project 3 */}
+          <Card className="group cursor-pointer flex flex-col border-[--border] bg-[--surface] hover:border-[--brand] transition-all duration-300 hover:-translate-y-1">
             <CardHeader>
-              <CardTitle className="text-2xl">{getTranslation(language, "project3Title")}</CardTitle>
+              <CardTitle className="text-2xl group-hover:text-[--brand] transition-colors">{getTranslation(language, "project3Title")}</CardTitle>
             </CardHeader>
             <CardContent className="flex-1">
               <CardDescription className="text-[--muted] leading-relaxed mb-4">
                 {getTranslation(language, "project3Description")}
               </CardDescription>
+              <div className="flex flex-wrap gap-2 mt-auto">
+                {["Snowflake", "Python", "AI Agents", "MCP"].map((tech, i) => (
+                  <span key={i} className="px-2.5 py-1 text-xs font-medium rounded-full bg-[#64FFDA]/5 text-[#64FFDA]/80 border border-[#64FFDA]/15">
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </CardContent>
             <CardFooter>
-              <a 
-                href="https://github.com/MrJohn91/snowflake-mcp-server-agent" 
-                target="_blank" 
+              <a
+                href="https://github.com/MrJohn91/snowflake-mcp-server-agent"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#A8D5E2] via-[#B8A9D4] to-[#C4B5E8] text-[#1A1A1A] rounded-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-sm"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#A8D5E2] via-[#B8A9D4] to-[#C4B5E8] text-[#1A1A1A] rounded-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-sm w-full justify-center"
                 onClick={(e) => e.stopPropagation()}
               >
                 {getTranslation(language, "viewProject")}
@@ -427,21 +470,29 @@ export default function Home() {
           </Card>
 
           {/* Project 4 */}
-          <Card className="group cursor-pointer flex flex-col">
+          {/* Project 4 */}
+          <Card className="group cursor-pointer flex flex-col border-[--border] bg-[--surface] hover:border-[--brand] transition-all duration-300 hover:-translate-y-1">
             <CardHeader>
-              <CardTitle className="text-2xl">{getTranslation(language, "project4Title")}</CardTitle>
+              <CardTitle className="text-2xl group-hover:text-[--brand] transition-colors">{getTranslation(language, "project4Title")}</CardTitle>
             </CardHeader>
             <CardContent className="flex-1">
               <CardDescription className="text-[--muted] leading-relaxed mb-4">
                 {getTranslation(language, "project4Description")}
               </CardDescription>
+              <div className="flex flex-wrap gap-2 mt-auto">
+                {["Next.js", "TypeScript", "Tailwind", "Voice Agent"].map((tech, i) => (
+                  <span key={i} className="px-2.5 py-1 text-xs font-medium rounded-full bg-[#64FFDA]/5 text-[#64FFDA]/80 border border-[#64FFDA]/15">
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </CardContent>
             <CardFooter>
-              <a 
-                href="https://github.com/MrJohn91/portfolio-website" 
-                target="_blank" 
+              <a
+                href="https://github.com/MrJohn91/portfolio-website"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#A8D5E2] via-[#B8A9D4] to-[#C4B5E8] text-[#1A1A1A] rounded-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-sm"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#A8D5E2] via-[#B8A9D4] to-[#C4B5E8] text-[#1A1A1A] rounded-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-sm w-full justify-center"
                 onClick={(e) => e.stopPropagation()}
               >
                 {getTranslation(language, "viewProject")}
@@ -469,7 +520,7 @@ export default function Home() {
       {/* Quick Stats */}
       <section className="max-w-[--maxw] mx-auto px-[--space] py-12 border-t border-[--border] relative overflow-hidden">
         {/* Faded color background effect */}
-        <div 
+        <div
           className="absolute inset-0 opacity-30 pointer-events-none"
           style={{
             background: `
@@ -537,8 +588,8 @@ export default function Home() {
             <div className="flex items-start gap-4">
               <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#CADCFC] to-[#A0B9D1] flex items-center justify-center">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#0a0c12]">
-                  <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/>
-                  <path d="m22 8-10 6L2 8"/>
+                  <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" />
+                  <path d="m22 8-10 6L2 8" />
                 </svg>
               </div>
               <div className="min-w-0 flex-1">
@@ -555,7 +606,7 @@ export default function Home() {
             <div className="flex items-start gap-4">
               <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#CADCFC] to-[#A0B9D1] flex items-center justify-center">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#0a0c12]">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
               <div className="min-w-0 flex-1">
@@ -574,9 +625,9 @@ export default function Home() {
             <div className="flex items-start gap-4">
               <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#CADCFC] to-[#A0B9D1] flex items-center justify-center">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#0a0c12]">
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6Z"/>
-                  <rect x="2" y="9" width="4" height="12" rx="1"/>
-                  <circle cx="4" cy="4" r="2"/>
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6Z" />
+                  <rect x="2" y="9" width="4" height="12" rx="1" />
+                  <circle cx="4" cy="4" r="2" />
                 </svg>
               </div>
               <div className="min-w-0 flex-1">
@@ -595,8 +646,8 @@ export default function Home() {
             <div className="flex items-start gap-4">
               <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#CADCFC] to-[#A0B9D1] flex items-center justify-center">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#0a0c12]">
-                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" strokeLinecap="round"/>
-                  <path d="M9 18c-4.51 2-5-2-7-2" strokeLinecap="round"/>
+                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" strokeLinecap="round" />
+                  <path d="M9 18c-4.51 2-5-2-7-2" strokeLinecap="round" />
                 </svg>
               </div>
               <div className="min-w-0 flex-1">
