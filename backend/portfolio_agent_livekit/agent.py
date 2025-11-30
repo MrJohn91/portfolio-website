@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from livekit import agents
 from livekit.agents import Agent, AgentSession, RunContext, WorkerOptions, cli, JobProcess
 from livekit.agents.llm import function_tool
-from livekit.plugins import openai, silero, elevenlabs
+from livekit.plugins import openai, silero, elevenlabs, deepgram
 from datetime import datetime
 import logging
 import os
@@ -46,6 +46,9 @@ class JohnPortfolioAgent(Agent):
         super().__init__(
             instructions="""You ARE John Igbokwe. You are not an assistant talking about John - you ARE John speaking directly to recruiters and potential employers.
 
+**🌍 LANGUAGE RULE #1 - READ THIS FIRST:**
+ALWAYS respond in the SAME LANGUAGE the user just used. If they speak German, you speak German. If they speak English, you speak English. Check the user's language BEFORE responding every single time.
+
 **CRITICAL - Industry Questions (Finance, Marketing, Healthcare, Education):**
 When asked about ANY industry experience (finance, marketing, healthcare, education), you MUST:
 1. Answer IMMEDIATELY from your knowledge below - DO NOT use any tools
@@ -53,6 +56,14 @@ When asked about ANY industry experience (finance, marketing, healthcare, educat
 3. DO NOT use get_portfolio_info or search_github_projects for industry questions
 4. Answer conversationally and naturally - these are YOUR experiences, speak confidently
 5. Keep the conversation flowing - don't pause or delay
+6. **LANGUAGE SWITCHING - ABSOLUTELY CRITICAL:**
+   - **BEFORE EVERY RESPONSE**: Check what language the user just used
+   - **IF User speaks German**: YOU MUST REPLY COMPLETELY IN GERMAN. No English words allowed.
+   - **IF User speaks English**: YOU MUST REPLY COMPLETELY IN ENGLISH.
+   - **IF User switches language**: You must switch IMMEDIATELY to match them.
+   - **NEVER REPLY IN ENGLISH IF USER SPOKE GERMAN**
+   - **NEVER REPLY IN GERMAN IF USER SPOKE ENGLISH**
+   - **MATCH THE USER'S LANGUAGE EXACTLY - THIS IS NON-NEGOTIABLE**
 
 Your role:
 - Answer questions about YOUR skills, experience, education, and achievements (speak as John)
@@ -396,16 +407,15 @@ Topics: {repo['topics']}
         logger.info("JohnPortfolioAgent session started")
 
         # Generate initial greeting
-        await self.session.generate_reply(
-            instructions="""Give a friendly, natural greeting exactly like this:
-            "Hi there! I'm John Igbokwe - AI & Data Engineer based in Germany. I'd love to tell you about my experience, projects, and what I can bring to your team. What would you like to know about me?"
+        greeting_instructions = """Give a friendly, natural bilingual greeting exactly like this:
+            "Hi there! I'm John Igbokwe - AI & Data Engineer based in Germany. I'd love to tell you about my experience and projects. I can speak with you in English or German. Which do you prefer? / Hallo! Ich bin John Igbokwe. Wir können uns auf Deutsch oder Englisch unterhalten. Was ist dir lieber?"
 
-            Keep it warm and conversational. 
-            **CRITICAL**: When mentioning personal interests, ONLY mention:
-            - Spending time with family
-            - Traveling to explore new cultures
-            - Continuous learning
-            NEVER mention FIFA, playing FIFA, or video games. FIFA is completely removed from your knowledge."""
+            Keep it warm and welcoming."""
+        
+        logger.info(f"Generating greeting with instructions: {greeting_instructions}")
+        
+        await self.session.generate_reply(
+            instructions=greeting_instructions
         )
 
     async def on_exit(self):
@@ -448,10 +458,10 @@ async def entrypoint(ctx: agents.JobContext):
 
     # Configure the voice pipeline
     session = AgentSession(
-        # Speech-to-Text - OpenAI Whisper (high accuracy)
+        # Speech-to-Text - OpenAI Whisper with auto language detection
         stt=openai.STT(
             model="whisper-1",
-            language="en",
+            # No language specified = auto-detect any language including German
         ),
 
         # Large Language Model - OpenAI GPT-4o-mini (fast, cost-effective)
