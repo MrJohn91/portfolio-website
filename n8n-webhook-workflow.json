@@ -1,0 +1,112 @@
+{
+  "name": "Portfolio Agent Conversation Update Alert",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "portfolio-conversation-update",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Notion Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [320, 300],
+      "webhookId": "portfolio-conversation-webhook"
+    },
+    {
+      "parameters": {
+        "resource": "page",
+        "operation": "get",
+        "pageId": "={{ $json.data.id }}",
+        "options": {}
+      },
+      "id": "get-conversation-details",
+      "name": "Get Conversation Details",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [540, 300],
+      "credentials": {
+        "notionApi": {
+          "id": "1",
+          "name": "Notion API Credentials"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json;\nconst webhook = $('Notion Webhook Trigger').first().json;\n\n// Extract conversation details\nconst name = data.properties?.Name?.title?.[0]?.text?.content || 'Unknown';\nconst email = data.properties?.Email?.email || 'No email provided';\nconst status = data.properties?.Status?.select?.name || 'Unknown';\nconst sentiment = data.properties?.Sentiment?.select?.name || 'Unknown';\nconst interestLevel = data.properties?.['Interest Level']?.select?.name || 'Unknown';\nconst topics = data.properties?.['Topics Discussed']?.multi_select?.map(t => t.name).join(', ') || 'None specified';\nconst summary = data.properties?.['Conversation Summary']?.rich_text?.[0]?.text?.content || 'No summary available';\nconst transcript = data.properties?.['Full Transcript']?.rich_text?.[0]?.text?.content || 'No transcript available';\nconst phone = data.properties?.Phone?.phone_number || 'No phone provided';\nconst followUpRequired = data.properties?.['Follow-up Required']?.checkbox ? 'Yes' : 'No';\nconst updatedTime = new Date(data.last_edited_time).toLocaleString();\nconst createdTime = new Date(data.created_time).toLocaleString();\n\n// Determine if this is a new conversation or update\nconst isNew = webhook.event === 'page.created' || data.created_time === data.last_edited_time;\nconst actionType = isNew ? 'New Conversation' : 'Conversation Updated';\n\n// Create email content\nconst emailContent = `\n<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;\">\n  <h2 style=\"color: #2563eb; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px;\">\n    🤖 ${actionType}: Portfolio Agent Activity\n  </h2>\n  \n  <div style=\"background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;\">\n    <h3 style=\"margin-top: 0; color: #1e293b;\">Contact Information</h3>\n    <p><strong>Name:</strong> ${name}</p>\n    <p><strong>Email:</strong> ${email}</p>\n    <p><strong>Phone:</strong> ${phone}</p>\n    <p><strong>Status:</strong> <span style=\"background: #dbeafe; padding: 2px 8px; border-radius: 4px;\">${status}</span></p>\n  </div>\n  \n  <div style=\"background-color: #f0fdf4; padding: 20px; border-radius: 8px; margin: 20px 0;\">\n    <h3 style=\"margin-top: 0; color: #166534;\">Conversation Analysis</h3>\n    <p><strong>Sentiment:</strong> <span style=\"background: #bbf7d0; padding: 2px 8px; border-radius: 4px;\">${sentiment}</span></p>\n    <p><strong>Interest Level:</strong> ${interestLevel}</p>\n    <p><strong>Topics Discussed:</strong> ${topics}</p>\n    <p><strong>Follow-up Required:</strong> ${followUpRequired}</p>\n  </div>\n  \n  <div style=\"background-color: #fefce8; padding: 20px; border-radius: 8px; margin: 20px 0;\">\n    <h3 style=\"margin-top: 0; color: #a16207;\">Conversation Summary</h3>\n    <p style=\"background: white; padding: 10px; border-radius: 4px; border-left: 4px solid #eab308;\">${summary}</p>\n  </div>\n  \n  <div style=\"background-color: #fdf2f8; padding: 20px; border-radius: 8px; margin: 20px 0;\">\n    <h3 style=\"margin-top: 0; color: #be185d;\">Full Transcript</h3>\n    <div style=\"background: white; padding: 10px; border-radius: 4px; max-height: 200px; overflow-y: auto; white-space: pre-wrap; font-family: monospace; font-size: 12px;\">${transcript}</div>\n  </div>\n  \n  <div style=\"background-color: #f1f5f9; padding: 20px; border-radius: 8px; margin: 20px 0;\">\n    <h3 style=\"margin-top: 0; color: #475569;\">Timestamps</h3>\n    <p><strong>Created:</strong> ${createdTime}</p>\n    <p><strong>Last Updated:</strong> ${updatedTime}</p>\n  </div>\n  \n  <div style=\"text-align: center; margin: 30px 0;\">\n    <a href=\"${data.url}\" \n       style=\"background: #2563eb; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;\">\n       📋 View in Notion\n    </a>\n  </div>\n  \n  <hr style=\"margin: 30px 0; border: none; border-top: 1px solid #e5e7eb;\">\n  <p style=\"text-align: center; color: #6b7280; font-size: 12px;\">\n    This alert was triggered by your Portfolio Agent automation system.\n  </p>\n</div>\n`;\n\nreturn {\n  subject: `🤖 ${actionType}: ${name} - ${status}`,\n  html: emailContent,\n  name: name,\n  email: email,\n  status: status,\n  sentiment: sentiment,\n  actionType: actionType\n};"
+      },
+      "id": "format-email",
+      "name": "Format Email Content",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [760, 300]
+    },
+    {
+      "parameters": {
+        "fromEmail": "portfolio-agent@yourn8n.com",
+        "toEmail": "your-email@example.com",
+        "subject": "={{ $json.subject }}",
+        "emailType": "html",
+        "message": "={{ $json.html }}",
+        "options": {}
+      },
+      "id": "send-email",
+      "name": "Send Email Alert",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [980, 300],
+      "credentials": {
+        "smtp": {
+          "id": "2",
+          "name": "SMTP Credentials"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Notion Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Conversation Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Conversation Details": {
+      "main": [
+        [
+          {
+            "node": "Format Email Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Email Content": {
+      "main": [
+        [
+          {
+            "node": "Send Email Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": ["portfolio", "automation", "notion"],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-26T00:00:00.000Z",
+  "versionId": "1"
+}
