@@ -1,9 +1,26 @@
-"""
-Portfolio Agent for John Igbokwe - LiveKit Version
-Voice agent using LiveKit Agents Framework
-"""
 
+import time
+import sys
+from pathlib import Path
+
+# PATCH: The system time is set to 2026, which causes LiveKit Cloud to reject
+# authentication tokens because they appear to be "from the future" (iat > server_time).
+# We monkey-patch time.time to return a timestamp from 2025.
+# 2026-01-02 -> ~1767360000
+# We subtract exactly 365 days (~31536000 seconds) to bring it to 2025.
+_real_time = time.time
+def _fake_time():
+    t = _real_time()
+    # Check if we are in 2026 (timestamp > 1767200000 approx for Jan 2026)
+    if t > 1767200000:
+        return t - 31536000 # Subtract 1 year
+    return t
+time.time = _fake_time
+
+# Import dotenv immediately
 from dotenv import load_dotenv
+load_dotenv() 
+
 from livekit import agents
 from livekit.agents import Agent, AgentSession, RunContext, WorkerOptions, cli, JobProcess
 from livekit.agents.llm import function_tool
@@ -11,8 +28,7 @@ from livekit.plugins import openai, silero, elevenlabs, deepgram
 from datetime import datetime
 import logging
 import os
-import sys
-from pathlib import Path
+
 
 # Load environment variables
 try:
