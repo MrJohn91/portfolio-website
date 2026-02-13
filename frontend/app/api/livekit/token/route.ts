@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { AccessToken } from "livekit-server-sdk";
+import { AccessToken, RoomAgentDispatch } from "livekit-server-sdk";
 
 export async function POST(request: NextRequest) {
   try {
@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
       identity: participantName,
     });
 
-    // Grant permissions and configure agent dispatch
+    // Grant permissions
     at.addGrant({
       room: roomName,
       roomJoin: true,
@@ -69,11 +69,12 @@ export async function POST(request: NextRequest) {
     });
     
     // Explicitly dispatch agent when participant joins
-    // This ensures the agent joins the room automatically
     at.roomConfig = {
-      agents: [{
-        agentName: "", // Empty string = use default agent (automatic dispatch)
-      }],
+      agents: [
+        new RoomAgentDispatch({
+          agentName: "", // Empty = use default agent
+        }),
+      ],
     };
 
     // Generate token
