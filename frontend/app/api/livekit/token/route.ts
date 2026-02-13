@@ -18,10 +18,10 @@ export async function POST(request: NextRequest) {
       if (!livekitUrl) missing.push("LIVEKIT_URL");
       if (!apiKey) missing.push("LIVEKIT_API_KEY");
       if (!apiSecret) missing.push("LIVEKIT_API_SECRET");
-      
+
       console.error("❌ Missing LiveKit credentials:", missing);
       return NextResponse.json(
-        { 
+        {
           error: `LiveKit credentials not configured. Missing: ${missing.join(", ")}`,
           details: "Please set LIVEKIT_URL, LIVEKIT_API_KEY, and LIVEKIT_API_SECRET in your .env.local file"
         },
@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
 
     // Validate and normalize LIVEKIT_URL format
     let normalizedUrl = livekitUrl.trim();
-    
+
     // Ensure URL starts with wss:// or ws://
     if (!normalizedUrl.startsWith("wss://") && !normalizedUrl.startsWith("ws://")) {
       // If it's missing the protocol, add wss:// (secure for production)
@@ -51,7 +51,10 @@ export async function POST(request: NextRequest) {
     const roomName = `john-room-${Date.now()}`;
     const participantName = `user-${Math.random().toString(36).substring(7)}`;
 
-    // Create access token
+    // Note: Room will be auto-created when user joins
+    // Agent will auto-join via LiveKit Cloud's agent dispatch
+
+    // Create access token for the user
     const at = new AccessToken(apiKey, apiSecret, {
       identity: participantName,
     });

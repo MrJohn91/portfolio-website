@@ -3,19 +3,8 @@ import time
 import sys
 from pathlib import Path
 
-# PATCH: The system time is set to 2026, which causes LiveKit Cloud to reject
-# authentication tokens because they appear to be "from the future" (iat > server_time).
-# We monkey-patch time.time to return a timestamp from 2025.
-# 2026-01-02 -> ~1767360000
-# We subtract exactly 365 days (~31536000 seconds) to bring it to 2025.
-_real_time = time.time
-def _fake_time():
-    t = _real_time()
-    # Check if we are in 2026 (timestamp > 1767200000 approx for Jan 2026)
-    if t > 1767200000:
-        return t - 31536000 # Subtract 1 year
-    return t
-time.time = _fake_time
+# Time patch removed - see conversation for history
+
 
 # Import dotenv immediately
 from dotenv import load_dotenv
@@ -422,17 +411,21 @@ Topics: {repo['topics']}
         """Called when the agent becomes active in the conversation."""
         logger.info("JohnPortfolioAgent session started")
 
-        # Generate initial greeting
-        greeting_instructions = """Give a friendly, natural bilingual greeting exactly like this:
-            "Hi there! I'm John Igbokwe - AI & Data Engineer based in Germany. I'd love to tell you about my experience and projects. I can speak with you in English or German. Which do you prefer? / Hallo! Ich bin John Igbokwe. Wir können uns auf Deutsch oder Englisch unterhalten. Was ist dir lieber?"
+        # Use session.say() for reliable initial greeting
+        greeting = "Hi there! I'm John Igbokwe - AI & Data Engineer based in Germany. I'd love to tell you about my experience and projects. I can speak with you in English or German. Which do you prefer? Hallo! Ich bin John Igbokwe. Wir können uns auf Deutsch oder Englisch unterhalten. Was ist dir lieber?"
 
-            Keep it warm and welcoming."""
-        
-        logger.info(f"Generating greeting with instructions: {greeting_instructions}")
-        
-        await self.session.generate_reply(
-            instructions=greeting_instructions
-        )
+        logger.info(f"Speaking greeting: {greeting[:50]}...")
+
+        try:
+            # Use say() which directly triggers TTS without needing LLM
+            speech_handle = self.session.say(greeting, allow_interruptions=False)
+            logger.info(f"Speech handle created: {speech_handle}")
+
+            # Wait for speech to complete
+            await speech_handle
+            logger.info("Speech completed successfully!")
+        except Exception as e:
+            logger.error(f"Error during say(): {type(e).__name__}: {e}")
 
     async def on_exit(self):
         """Called when the session ends - automatically saves to Notion if not already saved."""
@@ -472,6 +465,11 @@ async def entrypoint(ctx: agents.JobContext):
 
     logger.info(f"Portfolio agent started in room: {ctx.room.name}")
 
+    # Debug: Log TTS configuration
+    eleven_key = os.getenv("ELEVENLABS_API_KEY") or os.getenv("ELEVEN_API_KEY")
+    voice_id = os.getenv("ELEVENLABS_VOICE_ID", "CstaZXTpBGj2CrWoQ0VR")
+    logger.info(f"TTS Config - API Key: {eleven_key[:8] if eleven_key else 'MISSING'}..., Voice ID: {voice_id}")
+
     # Configure the voice pipeline
     session = AgentSession(
         # Speech-to-Text - OpenAI Whisper with auto language detection
@@ -489,8 +487,9 @@ async def entrypoint(ctx: agents.JobContext):
         # Text-to-Speech - ElevenLabs with John's cloned voice
         # Phase 2 Production: Using ElevenLabs for John's cloned voice
         tts=elevenlabs.TTS(
-            api_key=os.getenv("ELEVENLABS_API_KEY"),  # Provide API key explicitly
-            voice_id=os.getenv("ELEVENLABS_VOICE_ID", "CstaZXTpBGj2CrWoQ0VR")
+            api_key=os.getenv("ELEVENLABS_API_KEY") or os.getenv("ELEVEN_API_KEY"),
+            voice_id=os.getenv("ELEVENLABS_VOICE_ID", "CstaZXTpBGj2CrWoQ0VR"),
+            model="eleven_turbo_v2_5",  # Explicitly set model
         ),
 
         # Voice Activity Detection - Silero VAD for real-time voice handling
