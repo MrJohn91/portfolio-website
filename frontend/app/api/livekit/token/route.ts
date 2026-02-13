@@ -54,12 +54,12 @@ export async function POST(request: NextRequest) {
     // Note: Room will be auto-created when user joins
     // Agent will auto-join via LiveKit Cloud's agent dispatch
 
-    // Create access token for the user
+    // Create access token for the user with agent dispatch
     const at = new AccessToken(apiKey, apiSecret, {
       identity: participantName,
     });
 
-    // Grant permissions
+    // Grant permissions and configure agent dispatch
     at.addGrant({
       room: roomName,
       roomJoin: true,
@@ -67,6 +67,14 @@ export async function POST(request: NextRequest) {
       canSubscribe: true,
       canPublishData: true,
     });
+    
+    // Explicitly dispatch agent when participant joins
+    // This ensures the agent joins the room automatically
+    at.roomConfig = {
+      agents: [{
+        agentName: "", // Empty string = use default agent (automatic dispatch)
+      }],
+    };
 
     // Generate token
     const token = await at.toJwt();

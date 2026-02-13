@@ -3,3 +3,7 @@
 
 [agent]
   id = "CA_Kms4MXDormjJ"
+  
+[agent.dispatch]
+  # Auto-dispatch agent to all new rooms
+  room_name = "*"
