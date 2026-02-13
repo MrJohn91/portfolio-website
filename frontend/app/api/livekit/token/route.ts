@@ -74,10 +74,10 @@ export async function POST(request: NextRequest) {
     // Explicitly dispatch agent to the room
     try {
       const dispatchClient = new AgentDispatchClient(normalizedUrl, apiKey, apiSecret);
-      await dispatchClient.createDispatch(roomName, "");
+      await dispatchClient.createDispatch(roomName, "john-agent");
       console.log("✅ Agent dispatched to room:", roomName);
     } catch (dispatchError) {
-      console.warn("⚠️ Agent dispatch failed (will rely on auto-dispatch):", dispatchError);
+      console.warn("⚠️ Agent dispatch failed:", dispatchError);
     }
 
     console.log("✅ Token generated successfully for room:", roomName);

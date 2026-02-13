@@ -467,6 +467,7 @@ async def entrypoint(ctx: agents.JobContext):
 
     # Configure the voice pipeline
     session = AgentSession(
+        agent_name="john-agent",  # Set name to disable auto-dispatch
         # Speech-to-Text - OpenAI Whisper with auto language detection
         stt=openai.STT(
             model="whisper-1",
