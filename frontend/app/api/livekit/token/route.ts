@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { AccessToken, RoomAgentDispatch } from "livekit-server-sdk";
+import { AccessToken, RoomAgentDispatch, RoomConfiguration } from "livekit-server-sdk";
 
 export async function POST(request: NextRequest) {
   try {
@@ -69,13 +69,13 @@ export async function POST(request: NextRequest) {
     });
     
     // Explicitly dispatch agent when participant joins
-    at.roomConfig = {
+    at.roomConfig = new RoomConfiguration({
       agents: [
         new RoomAgentDispatch({
-          agentName: "", // Empty = use default agent
+          agentName: "",
         }),
       ],
-    };
+    });
 
     // Generate token
     const token = await at.toJwt();
