@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { AccessToken, RoomAgentDispatch, RoomConfiguration } from "livekit-server-sdk";
+import { AccessToken, AgentDispatchClient } from "livekit-server-sdk";
 
 export async function POST(request: NextRequest) {
   try {
@@ -67,18 +67,18 @@ export async function POST(request: NextRequest) {
       canSubscribe: true,
       canPublishData: true,
     });
-    
-    // Explicitly dispatch agent when participant joins
-    at.roomConfig = new RoomConfiguration({
-      agents: [
-        new RoomAgentDispatch({
-          agentName: "",
-        }),
-      ],
-    });
 
     // Generate token
     const token = await at.toJwt();
+
+    // Explicitly dispatch agent to the room
+    try {
+      const dispatchClient = new AgentDispatchClient(normalizedUrl, apiKey, apiSecret);
+      await dispatchClient.createDispatch(roomName, "");
+      console.log("✅ Agent dispatched to room:", roomName);
+    } catch (dispatchError) {
+      console.warn("⚠️ Agent dispatch failed (will rely on auto-dispatch):", dispatchError);
+    }
 
     console.log("✅ Token generated successfully for room:", roomName);
 
