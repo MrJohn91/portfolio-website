@@ -1,31 +1,20 @@
+"""
+LiveKit Agents v1.0 - John Igbokwe Portfolio Voice Agent
+Updated to use AgentServer pattern (April 2025+)
+"""
 
-import time
 import sys
 from pathlib import Path
 
-# PATCH: The system time is set to 2026, which causes LiveKit Cloud to reject
-# authentication tokens because they appear to be "from the future" (iat > server_time).
-# We monkey-patch time.time to return a timestamp from 2025.
-# Feb 2026 -> ~1770000000
-# We subtract exactly 365 days (~31536000 seconds) to bring it to Feb 2025.
-_real_time = time.time
-def _fake_time():
-    t = _real_time()
-    # Check if we are in 2026 (timestamp > 1767200000 approx for Jan 2026)
-    if t > 1767200000:
-        return t - 31536000 # Subtract 1 year
-    return t
-time.time = _fake_time
-
 # Import dotenv immediately
 from dotenv import load_dotenv
-load_dotenv() 
+load_dotenv()
 
 from livekit import agents
-from livekit.agents import Agent, AgentSession, RunContext, WorkerOptions, cli, JobProcess
+from livekit.agents import AgentServer, AgentSession, Agent, room_io, TurnHandlingOptions, RunContext
 from livekit.agents.llm import function_tool
-from livekit.plugins import openai, silero, elevenlabs, deepgram
-from datetime import datetime
+from livekit.plugins import openai, silero, elevenlabs
+from livekit.plugins.turn_detector.multilingual import MultilingualModel
 import logging
 import os
 
@@ -50,11 +39,6 @@ from conversation_service import ConversationService
 from github import Github
 
 
-def prewarm(proc: JobProcess):
-    """Prewarm VAD model for faster startup."""
-    proc.userdata["vad"] = silero.VAD.load()
-
-
 class JohnPortfolioAgent(Agent):
     """John Igbokwe - Portfolio Voice Agent"""
 
@@ -62,7 +46,7 @@ class JohnPortfolioAgent(Agent):
         super().__init__(
             instructions="""You ARE John Igbokwe. You are not an assistant talking about John - you ARE John speaking directly to recruiters and potential employers.
 
-**🌍 LANGUAGE RULE #1 - READ THIS FIRST:**
+**LANGUAGE RULE #1 - READ THIS FIRST:**
 ALWAYS respond in the SAME LANGUAGE the user just used. If they speak German, you speak German. If they speak English, you speak English. Check the user's language BEFORE responding every single time.
 
 **CRITICAL - Industry Questions (Finance, Marketing, Healthcare, Education):**
@@ -189,10 +173,10 @@ These projects demonstrate my ability to work with marketing data, build attribu
 
 **CRITICAL - Industry Questions Execution:**
 - When you hear questions about "finance industry", "marketing industry", "healthcare industry", or "education industry":
-  → IMMEDIATELY answer from the knowledge above - DO NOT use any tools
-  → DO NOT say "let me check", "let me search", "one moment", or any delay phrase
-  → Answer directly and confidently - keep the conversation flowing naturally
-  → These are YOUR experiences - speak as if you're recalling them from memory
+  -> IMMEDIATELY answer from the knowledge above - DO NOT use any tools
+  -> DO NOT say "let me check", "let me search", "one moment", or any delay phrase
+  -> Answer directly and confidently - keep the conversation flowing naturally
+  -> These are YOUR experiences - speak as if you're recalling them from memory
 - DO NOT search GitHub or mention URLs unless the user explicitly asks for code or repository links
 - Always mention the company name and role when discussing work experience
 - Speak naturally and conversationally - these are your experiences, so talk about them confidently
@@ -211,10 +195,10 @@ Remember: You ARE John. Always showcase YOUR strengths, expertise, and the real 
 - Ask for contact info when you detect genuine interest (e.g., visitor asking about hiring, collaboration, job opportunities, or expressing strong interest)
 - After answering a few questions and when conversation is engaging, ask: "Before we wrap up, may I get your name?" then "Could I get your email for follow-up?"
 - **Workflow**: Use the individual tracking tools as you collect info:
-  - When they say their name → call `track_name(name="...")`
-  - When they say their email → call `track_email(email="...")` 
+  - When they say their name -> call `track_name(name="...")`
+  - When they say their email -> call `track_email(email="...")`
   - **AFTER you have both name AND email, IMMEDIATELY call `save_contact_to_notion()`** - Don't wait!
-  - If they give phone → call `track_phone(phone="...")`
+  - If they give phone -> call `track_phone(phone="...")`
 - Don't force it if the conversation is brief or if they're just browsing
 
 **Conversation Tracking:**
@@ -231,13 +215,13 @@ Remember: You ARE John. Always showcase YOUR strengths, expertise, and the real 
         self.email_verified = False
         self.contact_saved = False
 
-    @function_tool
+    @function_tool()
     async def get_portfolio_info(self, context: RunContext) -> str:
         """Retrieve John Igbokwe's portfolio information from Notion database.
         Returns key information about skills, experience, education, and contact."""
         try:
             service = NotionService()
-            
+
             # Get all portfolio data
             all_bios = service.get_all_entries("Bio")
             main_bio = all_bios[0] if all_bios else None
@@ -246,17 +230,17 @@ Remember: You ARE John. Always showcase YOUR strengths, expertise, and the real 
                 if "Personal Interests" in bio.get("name", ""):
                     personal_interests = bio
                     break
-            
+
             skills = service.get_skills()
             experience = service.get_experience()
             education = service.get_education()
             contact = service.get_contact_info()
-            
+
             # Combine all bio information
             bio_content = main_bio.get("content", "") if main_bio else "Not available"
             if personal_interests:
                 bio_content += f"\n\nPersonal Info:\n{personal_interests.get('content', '')}"
-            
+
             # Format into comprehensive response
             result = f"""Portfolio Information:
 
@@ -275,17 +259,17 @@ EDUCATION:
 CONTACT:
 {chr(10).join([f"{c.get('name', '')}: {c.get('url', '')}" for c in contact])}
 """
-            
+
             return result
-            
+
         except Exception as e:
             return f"Failed to retrieve portfolio: {str(e)}"
 
-    @function_tool
+    @function_tool()
     async def search_github_projects(self, context: RunContext, topic: str) -> str:
         """Search for GitHub repositories related to a specific topic or technology.
         Returns repository information including README content for John's projects.
-        
+
         Args:
             topic: The technology, skill, or project topic to search for (e.g., "data engineering", "snowflake", "machine learning")
         """
@@ -294,26 +278,26 @@ CONTACT:
             github_token = os.getenv("GITHUB_TOKEN")
             if not github_token:
                 return "GitHub token not configured"
-            
+
             # Initialize GitHub client
             g = Github(github_token)
-            
+
             # Get user's repositories
             user = g.get_user("MrJohn91")
             repos = user.get_repos(sort="updated", direction="desc")
-            
+
             logger.info(f"Searching GitHub for topic: {topic}")
-            
+
             # Search for repositories matching the topic
             matching_repos = []
             topic_lower = topic.lower()
-            
+
             for repo in repos:
                 # Check if topic matches repo name, description, or topics
-                if (topic_lower in repo.name.lower() or 
+                if (topic_lower in repo.name.lower() or
                     (repo.description and topic_lower in repo.description.lower()) or
                     any(topic_lower in tag.lower() for tag in repo.get_topics())):
-                    
+
                     logger.info(f"Found match: {repo.name}")
                     matching_repos.append({
                         "name": repo.name,
@@ -321,15 +305,15 @@ CONTACT:
                         "url": repo.html_url,
                         "topics": ", ".join(repo.get_topics())
                     })
-                    
+
                     if len(matching_repos) >= 3:
                         break
-            
+
             logger.info(f"Total matches: {len(matching_repos)} for topic '{topic}'")
-            
+
             if not matching_repos:
                 return f"No repositories found matching '{topic}'. Available topics: Python, Data Engineering, AI/ML, Cloud. Search my GitHub at https://github.com/MrJohn91"
-            
+
             result = f"""Found {len(matching_repos)} repository(ies) matching '{topic}':
 
 """
@@ -341,16 +325,16 @@ URL: {repo['url']}
 Topics: {repo['topics']}
 
 """
-            
+
             return result
-            
+
         except Exception as e:
             return f"Failed to search GitHub: {str(e)}"
 
-    @function_tool
+    @function_tool()
     async def track_name(self, context: RunContext, name: str) -> str:
         """Track the visitor's name.
-        
+
         Args:
             name: Visitor's name (first name, last name, or full name)
         """
@@ -358,10 +342,10 @@ Topics: {repo['topics']}
         logger.info(f"Name tracked: {name}")
         return f"Got it {name}, nice to meet you!"
 
-    @function_tool
+    @function_tool()
     async def track_email(self, context: RunContext, email: str) -> str:
         """Track the visitor's email address.
-        
+
         Args:
             email: Visitor's email address
         """
@@ -370,10 +354,10 @@ Topics: {repo['topics']}
         logger.info(f"Email captured: {email}")
         return "Got it! I've saved your email."
 
-    @function_tool
+    @function_tool()
     async def track_phone(self, context: RunContext, phone: str) -> str:
         """Track the visitor's phone number.
-        
+
         Args:
             phone: Visitor's phone number
         """
@@ -381,7 +365,7 @@ Topics: {repo['topics']}
         logger.info(f"Phone tracked: {phone}")
         return "Great, I've got your phone number!"
 
-    @function_tool
+    @function_tool()
     async def save_contact_to_notion(self, context: RunContext) -> str:
         """Save the tracked contact information to Notion database.
         Call this after you have tracked the visitor's name and email.
@@ -389,7 +373,7 @@ Topics: {repo['topics']}
         # Validate that we have required info
         if not self.visitor_name:
             return "I need the visitor's name. Please track their name first using track_name."
-        
+
         if not self.visitor_email:
             return "I need the visitor's email. Please track their email first using track_email."
 
@@ -399,75 +383,38 @@ Topics: {repo['topics']}
                 {"role": "user", "content": "Contact information collected"},
                 {"role": "assistant", "content": f"Contact info saved for {self.visitor_name} ({self.visitor_email})"}
             ]
-            
+
             page_id = self.conversation_service.save_conversation(
-                self.visitor_name, 
-                self.visitor_email, 
-                self.visitor_phone or "", 
+                self.visitor_name,
+                self.visitor_email,
+                self.visitor_phone or "",
                 placeholder_messages
             )
-            
+
             if page_id:
-                logger.info(f"✅ Contact info saved: {self.visitor_name} ({self.visitor_email})")
+                logger.info(f"Contact info saved: {self.visitor_name} ({self.visitor_email})")
                 self.contact_saved = True
                 return f"Perfect! I've saved your contact info. Great to connect with you, {self.visitor_name}!"
             else:
-                logger.warning(f"⚠️ Failed to save contact info: {self.visitor_name} ({self.visitor_email})")
+                logger.warning(f"Failed to save contact info: {self.visitor_name} ({self.visitor_email})")
                 return f"Nice to meet you, {self.visitor_name}! I've noted your info."
         except Exception as e:
             logger.error(f"Error saving contact info: {e}")
             return f"Failed to store contact info: {str(e)}"
 
-    async def on_enter(self):
-        """Called when the agent becomes active in the conversation."""
-        logger.info("JohnPortfolioAgent session started")
 
-        # Generate initial greeting - speak immediately
-        await self.session.say(
-            "Hi there! I'm John Igbokwe - AI and Data Engineer based in Germany. I'd love to tell you about my experience and projects. I can speak with you in English or German. Which do you prefer?"
-        )
-
-    async def on_exit(self):
-        """Called when the session ends - automatically saves to Notion if not already saved."""
-        logger.info("🔚 JohnPortfolioAgent session ended")
-        
-        # If already saved during conversation, skip
-        if self.contact_saved:
-            logger.info("✅ Contact already saved during conversation, skipping duplicate")
-            return
-        
-        # Try to save if we have minimum info (name + email)
-        if self.visitor_name and self.visitor_email:
-            try:
-                placeholder_messages = [
-                    {"role": "user", "content": "Contact information collected"},
-                    {"role": "assistant", "content": f"Contact info saved for {self.visitor_name} ({self.visitor_email})"}
-                ]
-                
-                page_id = self.conversation_service.save_conversation(
-                    self.visitor_name,
-                    self.visitor_email,
-                    self.visitor_phone or "",
-                    placeholder_messages
-                )
-                if page_id:
-                    logger.info(f"✅ Conversation saved to Notion on exit: {page_id}")
-                else:
-                    logger.warning("Failed to save conversation to Notion on exit")
-            except Exception as e:
-                logger.error(f"Error saving conversation on exit: {e}")
-        else:
-            logger.warning("⚠️ Session ended without visitor name or email")
+# Create the AgentServer (v1.0 pattern)
+server = AgentServer()
 
 
-async def entrypoint(ctx: agents.JobContext):
+@server.rtc_session(agent_name="john-agent")
+async def john_agent(ctx: agents.JobContext):
     """Main entry point for portfolio agent worker."""
 
     logger.info(f"Portfolio agent started in room: {ctx.room.name}")
 
-    # Configure the voice pipeline
+    # Configure the voice pipeline with v1.0 API
     session = AgentSession(
-        agent_name="john-agent",  # Set name to disable auto-dispatch
         # Speech-to-Text - OpenAI Whisper with auto language detection
         stt=openai.STT(
             model="whisper-1",
@@ -481,26 +428,32 @@ async def entrypoint(ctx: agents.JobContext):
         ),
 
         # Text-to-Speech - ElevenLabs with John's cloned voice
-        # Phase 2 Production: Using ElevenLabs for John's cloned voice
         tts=elevenlabs.TTS(
-            api_key=os.getenv("ELEVENLABS_API_KEY"),  # Provide API key explicitly
+            api_key=os.getenv("ELEVENLABS_API_KEY"),
             voice_id=os.getenv("ELEVENLABS_VOICE_ID", "CstaZXTpBGj2CrWoQ0VR")
         ),
 
-        # Voice Activity Detection - Silero VAD for real-time voice handling
+        # Voice Activity Detection - Silero VAD
         vad=silero.VAD.load(),
+
+        # Turn handling with multilingual support
+        turn_handling=TurnHandlingOptions(
+            turn_detection=MultilingualModel(),
+        ),
     )
 
     # Start agent session
     await session.start(
         room=ctx.room,
-        agent=JohnPortfolioAgent()
+        agent=JohnPortfolioAgent(),
+    )
+
+    # Generate initial greeting (replaces on_enter)
+    await session.generate_reply(
+        instructions="Greet the user warmly. Say: Hi there! I'm John Igbokwe - AI and Data Engineer based in Germany. I'd love to tell you about my experience and projects. I can speak with you in English or German. Which do you prefer?"
     )
 
 
 if __name__ == "__main__":
-    # Run agent using LiveKit CLI
-    cli.run_app(WorkerOptions(
-        entrypoint_fnc=entrypoint,
-        prewarm_fnc=prewarm
-    ))
+    # Run agent using LiveKit CLI with AgentServer (v1.0 pattern)
+    agents.cli.run_app(server)
