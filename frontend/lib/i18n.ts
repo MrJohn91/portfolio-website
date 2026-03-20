@@ -9,7 +9,7 @@ export const translations = {
     contact: 'Contact',
     
     // Hero
-    subtitle: 'AI & Data Engineer',
+    subtitle: 'AI Architect & Data Engineer',
     description: 'I build intelligent systems that help businesses solve real-world problems across various industries including healthcare, education, finance, marketing, and more.',
     viewProjects: 'View Projects',
     downloadCV: 'Download CV',
@@ -115,7 +115,7 @@ export const translations = {
     contact: 'Kontakt',
     
     // Hero
-    subtitle: 'KI & Dateningenieur',
+    subtitle: 'KI-Architekt & Dateningenieur',
     description: 'Ich erstelle intelligente Systeme, die Unternehmen dabei helfen, reale Probleme in verschiedenen Branchen wie Gesundheitswesen, Bildung, Finanzen, Marketing und mehr zu lösen.',
     viewProjects: 'Projekte Ansehen',
     downloadCV: 'Lebenslauf Herunterladen',
