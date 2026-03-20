@@ -16,7 +16,7 @@ export const translations = {
     
     // About
     aboutTitle: 'About Me',
-    about1: "Hey, I'm John - an AI & Data Engineer passionate about building intelligent systems that make a real impact. With experience across multiple industries, I bring diverse expertise to every project.",
+    about1: "Hey, I'm John - an AI Architect & Data Engineer passionate about building intelligent systems that make a real impact. With experience across multiple industries, I bring diverse expertise to every project.",
     about2: "When I'm not coding, I'm mentoring others in data/AI careers, spending time with family, or traveling to explore new cultures. Continuous learning and adaptability are what drive me.",
     technologies: 'Technologies',
     skills: 'Skills',
@@ -122,7 +122,7 @@ export const translations = {
     
     // About
     aboutTitle: 'Über Mich',
-    about1: 'Hallo, ich bin John - ein KI- und Dateningenieur, der sich für den Aufbau intelligenter Systeme einsetzt, die einen echten Einfluss haben. Mit Erfahrung in verschiedenen Branchen bringe ich vielfältige Expertise in jedes Projekt ein.',
+    about1: 'Hallo, ich bin John - ein KI-Architekt und Dateningenieur, der sich für den Aufbau intelligenter Systeme einsetzt, die einen echten Einfluss haben. Mit Erfahrung in verschiedenen Branchen bringe ich vielfältige Expertise in jedes Projekt ein.',
     about2: 'Wenn ich nicht programmiere, betreue ich andere in Karrieren im Bereich Daten/KI, verbringe Zeit mit meiner Familie oder reise, um neue Kulturen zu erkunden. Kontinuierliches Lernen und Anpassungsfähigkeit sind das, was mich antreibt.',
     technologies: 'Technologien',
     skills: 'Fähigkeiten',
