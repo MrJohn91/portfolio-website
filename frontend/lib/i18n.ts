@@ -63,7 +63,7 @@ export const translations = {
     // Work Experience - micro1
     micro1Company: 'micro1',
     micro1Role: 'Software Development Expert',
-    micro1Location: 'Remote',
+    micro1Location: 'United States',
     micro1Bullet1: 'Training, fine-tuning, and evaluating AI models, while providing expert guidance and support throughout the process.',
     
     // Projects
@@ -169,7 +169,7 @@ export const translations = {
     // Work Experience - micro1
     micro1Company: 'micro1',
     micro1Role: 'Software-Entwicklungsexperte',
-    micro1Location: 'Remote',
+    micro1Location: 'United States',
     micro1Bullet1: 'Training, Feinabstimmung und Bewertung von KI-Modellen, während fachkundige Anleitung und Unterstützung während des gesamten Prozesses bereitgestellt wird.',
     
     // Projects
