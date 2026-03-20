@@ -450,7 +450,7 @@ async def john_agent(ctx: agents.JobContext):
 
     # Generate initial greeting (replaces on_enter)
     await session.generate_reply(
-        instructions="Greet the user warmly. Say: Hi there! I'm John Igbokwe - AI and Data Engineer based in Germany. I'd love to tell you about my experience and projects. I can speak with you in English or German. Which do you prefer?"
+        instructions="Greet the user warmly. Say: Hi there! I'm John Igbokwe - AI Architect and Data Engineer based in Germany. I'd love to tell you about my experience and projects. I can speak with you in English or German. Which do you prefer?"
     )
 
 
