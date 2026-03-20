@@ -134,6 +134,36 @@ export default function Home() {
       <section id="experience" className="max-w-[--maxw] mx-auto px-[--space] pt-12 pb-20 border-t border-[--border]">
         <h2 className="text-3xl font-bold mb-12 text-[--text]">{getTranslation(language, "experienceTitle")}</h2>
         <div className="space-y-8">
+          {/* Calford AI */}
+          <article className="group p-6 border border-[--border] rounded-[--radius] bg-[--surface] hover:border-[--brand] transition-colors">
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+              <div>
+                <h3 className="text-xl font-semibold mb-1">{getTranslation(language, "calfordCompany")}</h3>
+                <p className="text-[#38BDF8] font-medium mb-2">{getTranslation(language, "calfordRole")}</p>
+                <p className="text-[--muted] text-sm">{getTranslation(language, "calfordLocation")}</p>
+              </div>
+            </div>
+            <ul className="space-y-2 text-[--muted] leading-relaxed">
+              <li>• {getTranslation(language, "calfordBullet1")}</li>
+              <li>• {getTranslation(language, "calfordBullet2")}</li>
+              <li>• {getTranslation(language, "calfordBullet3")}</li>
+            </ul>
+          </article>
+
+          {/* micro1 */}
+          <article className="group p-6 border border-[--border] rounded-[--radius] bg-[--surface] hover:border-[--brand] transition-colors">
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+              <div>
+                <h3 className="text-xl font-semibold mb-1">{getTranslation(language, "micro1Company")}</h3>
+                <p className="text-[#38BDF8] font-medium mb-2">{getTranslation(language, "micro1Role")}</p>
+                <p className="text-[--muted] text-sm">{getTranslation(language, "micro1Location")}</p>
+              </div>
+            </div>
+            <ul className="space-y-2 text-[--muted] leading-relaxed">
+              <li>• {getTranslation(language, "micro1Bullet1")}</li>
+            </ul>
+          </article>
+
           {/* Pluto's Tech */}
           <article className="group p-6 border border-[--border] rounded-[--radius] bg-[--surface] hover:border-[--brand] transition-colors">
             <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
@@ -167,60 +197,6 @@ export default function Home() {
               <li>• {getTranslation(language, "univacityBullet4")}</li>
               <li>• {getTranslation(language, "univacityBullet5")}</li>
             </ul>
-          </article>
-
-          {/* Schnellecke GmbH */}
-          <article className="group p-6 border border-[--border] rounded-[--radius] bg-[--surface] hover:border-[--brand] transition-colors">
-            <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
-              <div>
-                <h3 className="text-xl font-semibold mb-1">{getTranslation(language, "schnelleckeCompany")}</h3>
-                <p className="text-[#38BDF8] font-medium mb-2">{getTranslation(language, "schnelleckeRole")}</p>
-                <p className="text-[--muted] text-sm">{getTranslation(language, "schnelleckeLocation")}</p>
-              </div>
-            </div>
-            <ul className="space-y-2 mb-4 text-[--muted] leading-relaxed">
-              <li>• {getTranslation(language, "schnelleckeBullet1")}</li>
-              <li>• {getTranslation(language, "schnelleckeBullet2")}</li>
-              <li>• {getTranslation(language, "schnelleckeBullet3")}</li>
-              <li>• {getTranslation(language, "schnelleckeBullet4")}</li>
-            </ul>
-            <div className="flex flex-wrap gap-2 mt-4">
-              {["Data Engineering", "Data Integration", "Operational Efficiency", "Data Documentation"].map((tech, idx) => (
-                <span
-                  key={idx}
-                  className="px-3 py-1 bg-[--surface] text-[--text] rounded-full text-xs border border-[--border]"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </article>
-
-          {/* Hytel Communications */}
-          <article className="group p-6 border border-[--border] rounded-[--radius] bg-[--surface] hover:border-[--brand] transition-colors">
-            <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
-              <div>
-                <h3 className="text-xl font-semibold mb-1">{getTranslation(language, "hytelCompany")}</h3>
-                <p className="text-[#38BDF8] font-medium mb-2">{getTranslation(language, "hytelRole")}</p>
-                <p className="text-[--muted] text-sm">{getTranslation(language, "hytelLocation")}</p>
-              </div>
-            </div>
-            <ul className="space-y-2 mb-4 text-[--muted] leading-relaxed">
-              <li>• {getTranslation(language, "hytelBullet1")}</li>
-              <li>• {getTranslation(language, "hytelBullet2")}</li>
-              <li>• {getTranslation(language, "hytelBullet3")}</li>
-              <li>• {getTranslation(language, "hytelBullet4")}</li>
-            </ul>
-            <div className="flex flex-wrap gap-2 mt-4">
-              {["Cloud", "Network Solutions", "IT Architecture", "Technical Support"].map((tech, idx) => (
-                <span
-                  key={idx}
-                  className="px-3 py-1 bg-[--surface] text-[--text] rounded-full text-xs border border-[--border]"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
           </article>
         </div>
       </section>

@@ -52,23 +52,19 @@ export const translations = {
     univacityBullet4: 'Personalized user experiences with AI (NLP), boosting user engagement by 30%.',
     univacityBullet5: 'Led architecture of data pipelines and dashboards that supported Univacity\'s global network, using Power BI and Streamlit for reports to support data projects, enabling double-digit growth in application completion rates.',
     
-    // Work Experience - Schnellecke GmbH
-    schnelleckeCompany: 'Schnellecke GmbH',
-    schnelleckeRole: 'Data Coordinator',
-    schnelleckeLocation: 'Bremen, Germany',
-    schnelleckeBullet1: 'Troubleshot data issues, enhancing operational efficiency.',
-    schnelleckeBullet2: 'Maintained extensive documentation for data sources and workflows, raising data flow efficiency by 40%.',
-    schnelleckeBullet3: 'Designed data integration techniques that improved overall operational metrics by 25%.',
-    schnelleckeBullet4: 'Engineered processing solutions that minimized downtime by 30%.',
-    
-    // Work Experience - Hytel Communications
-    hytelCompany: 'Hytel Communications',
-    hytelRole: 'IT Solutions Architect',
-    hytelLocation: 'Owerri, Nigeria',
-    hytelBullet1: 'Provided comprehensive technical support, achieving an 80% customer satisfaction rate.',
-    hytelBullet2: 'Collaborated with the sales team for client-focused technical solutions, enhancing client relationships and satisfaction.',
-    hytelBullet3: 'Developed customized IT solutions that met specific client requirements, resulting in increased customer retention.',
-    hytelBullet4: 'Implemented and troubleshot network solutions, optimizing connectivity by 50%.',
+    // Work Experience - Calford AI
+    calfordCompany: 'Calford AI',
+    calfordRole: 'AI Lead Developer',
+    calfordLocation: 'United States',
+    calfordBullet1: 'Leading the development and deployment of AI-powered automation platforms for clients across industries.',
+    calfordBullet2: 'Turning complex workflows into seamless, scalable digital experiences.',
+    calfordBullet3: 'Focus on quality, speed, and measurable outcomes.',
+
+    // Work Experience - micro1
+    micro1Company: 'micro1',
+    micro1Role: 'Software Development Expert',
+    micro1Location: 'Remote',
+    micro1Bullet1: 'Training, fine-tuning, and evaluating AI models, while providing expert guidance and support throughout the process.',
     
     // Projects
     projectsTitle: 'Projects',
@@ -162,23 +158,19 @@ export const translations = {
     univacityBullet4: 'Personalisiert Benutzererfahrungen mit KI (NLP), wodurch die Benutzerbindung um 30% gesteigert wurde.',
     univacityBullet5: 'Leitete die Architektur von Datenpipelines und Dashboards, die das globale Netzwerk von Univacity unterstützten, mit Power BI und Streamlit für Berichte zur Unterstützung von Datenprojekten, was zu zweistelligem Wachstum bei den Abschlussquoten von Bewerbungen führte.',
     
-    // Work Experience - Schnellecke GmbH
-    schnelleckeCompany: 'Schnellecke GmbH',
-    schnelleckeRole: 'Datenkoordinator',
-    schnelleckeLocation: 'Bremen, Deutschland',
-    schnelleckeBullet1: 'Behob Datenprobleme und verbesserte die operative Effizienz.',
-    schnelleckeBullet2: 'Pflegte umfangreiche Dokumentation für Datenquellen und Workflows, wodurch die Datenflusseffizienz um 40% gesteigert wurde.',
-    schnelleckeBullet3: 'Entwarf Datenintegrationstechniken, die die Gesamtbetriebskennzahlen um 25% verbesserten.',
-    schnelleckeBullet4: 'Entwickelte Verarbeitungslösungen, die Ausfallzeiten um 30% minimierten.',
-    
-    // Work Experience - Hytel Communications
-    hytelCompany: 'Hytel Communications',
-    hytelRole: 'IT-Lösungsarchitekt',
-    hytelLocation: 'Owerri, Nigeria',
-    hytelBullet1: 'Bietet umfassenden technischen Support und erreichte eine Kundenzufriedenheitsrate von 80%.',
-    hytelBullet2: 'Arbeitete mit dem Verkaufsteam an kundenorientierten technischen Lösungen zusammen und verbesserte Kundenbeziehungen und Zufriedenheit.',
-    hytelBullet3: 'Entwickelte maßgeschneiderte IT-Lösungen, die spezifische Kundenanforderungen erfüllten, was zu einer erhöhten Kundenbindung führte.',
-    hytelBullet4: 'Implementierte und behebt Netzwerklösungen, wodurch die Konnektivität um 50% optimiert wurde.',
+    // Work Experience - Calford AI
+    calfordCompany: 'Calford AI',
+    calfordRole: 'KI-Leitender Entwickler',
+    calfordLocation: 'Vereinigte Staaten',
+    calfordBullet1: 'Leitung der Entwicklung und Bereitstellung von KI-gestützten Automatisierungsplattformen für Kunden in verschiedenen Branchen.',
+    calfordBullet2: 'Umwandlung komplexer Workflows in nahtlose, skalierbare digitale Erlebnisse.',
+    calfordBullet3: 'Fokus auf Qualität, Geschwindigkeit und messbare Ergebnisse.',
+
+    // Work Experience - micro1
+    micro1Company: 'micro1',
+    micro1Role: 'Software-Entwicklungsexperte',
+    micro1Location: 'Remote',
+    micro1Bullet1: 'Training, Feinabstimmung und Bewertung von KI-Modellen, während fachkundige Anleitung und Unterstützung während des gesamten Prozesses bereitgestellt wird.',
     
     // Projects
     projectsTitle: 'Projekte',
