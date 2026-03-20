@@ -423,7 +423,7 @@ export default function Home() {
                 {getTranslation(language, "project3Description")}
               </CardDescription>
               <div className="flex flex-wrap gap-2 mt-auto">
-                {["Snowflake", "Python", "AI Agents", "MCP"].map((tech, i) => (
+                {["Gemini AI", "Python", "WebRTC", "Next.js"].map((tech, i) => (
                   <span key={i} className="px-2.5 py-1 text-xs font-medium rounded-full bg-[#64FFDA]/5 text-[#64FFDA]/80 border border-[#64FFDA]/15">
                     {tech}
                   </span>
@@ -432,7 +432,7 @@ export default function Home() {
             </CardContent>
             <CardFooter>
               <a
-                href="https://github.com/MrJohn91/snowflake-mcp-server-agent"
+                href="https://github.com/MrJohn91/medlive_AI"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#A8D5E2] via-[#B8A9D4] to-[#C4B5E8] text-[#1A1A1A] rounded-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-sm w-full justify-center"
