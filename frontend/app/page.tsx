@@ -212,7 +212,7 @@ export default function Home() {
             </CardHeader>
             <CardContent className="pt-0">
               <div className="flex flex-wrap gap-2.5">
-                {["Next.js 14", "TypeScript", "Tailwind CSS", "React", "shadcn/ui"].map((skill, idx) => (
+                {["Claude Code", "Codex CLI", "Gemini CLI", "AI Agents", "Workflow Automation"].map((skill, idx) => (
                   <button
                     key={idx}
                     className="px-4 py-2 bg-[--bg] text-[--text] rounded-lg text-sm font-medium border border-[--border] hover:border-[--brand] hover:bg-gradient-to-r hover:from-[rgba(100,255,218,0.1)] hover:to-transparent hover:text-[#64FFDA] transition-all duration-200 hover:scale-105 active:scale-95"
@@ -250,7 +250,7 @@ export default function Home() {
             </CardHeader>
             <CardContent className="pt-0">
               <div className="flex flex-wrap gap-2.5">
-                {["Machine Learning", "NLP", "AI Agents", "AI Automation", "TensorFlow", "Keras", "PyTorch"].map((skill, idx) => (
+                {["Machine Learning", "NLP", "TensorFlow", "PyTorch"].map((skill, idx) => (
                   <button
                     key={idx}
                     className="px-4 py-2 bg-[--bg] text-[--text] rounded-lg text-sm font-medium border border-[--border] hover:border-[--brand] hover:bg-gradient-to-r hover:from-[rgba(100,255,218,0.1)] hover:to-transparent hover:text-[#64FFDA] transition-all duration-200 hover:scale-105 active:scale-95"
@@ -269,7 +269,7 @@ export default function Home() {
             </CardHeader>
             <CardContent className="pt-0">
               <div className="flex flex-wrap gap-2.5">
-                {["SQL", "Data Pipelines", "Power BI", "Streamlit", "Databricks", "Snowflake", "Azure Synapse", "Microsoft Fabric"].map((skill, idx) => (
+                {["SQL", "Data Pipelines", "Databricks", "Snowflake", "Power BI"].map((skill, idx) => (
                   <button
                     key={idx}
                     className="px-4 py-2 bg-[--bg] text-[--text] rounded-lg text-sm font-medium border border-[--border] hover:border-[--brand] hover:bg-gradient-to-r hover:from-[rgba(100,255,218,0.1)] hover:to-transparent hover:text-[#64FFDA] transition-all duration-200 hover:scale-105 active:scale-95"
@@ -307,7 +307,7 @@ export default function Home() {
             </CardHeader>
             <CardContent className="pt-0">
               <div className="flex flex-wrap gap-2.5">
-                {["Git", "Docker", "MySQL", "PostgreSQL", "MCP", "n8n", "Supabase", "OpenAI Whisper"].map((skill, idx) => (
+                {["Git", "Docker", "PostgreSQL", "MCP", "n8n", "Supabase"].map((skill, idx) => (
                   <button
                     key={idx}
                     className="px-4 py-2 bg-[--bg] text-[--text] rounded-lg text-sm font-medium border border-[--border] hover:border-[--brand] hover:bg-gradient-to-r hover:from-[rgba(100,255,218,0.1)] hover:to-transparent hover:text-[#64FFDA] transition-all duration-200 hover:scale-105 active:scale-95"
