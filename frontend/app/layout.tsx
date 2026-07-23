@@ -4,7 +4,7 @@ import { LanguageProvider } from '@/lib/language-context'
 import { CursorGlow } from '@/components/cursor-glow'
 
 export const metadata: Metadata = {
-  title: 'John Igbokwe - AI Engineer & Software Developer',
+  title: 'John Igbokwe - AI Architect & Software Developer',
   description: 'AI-powered portfolio of John Igbokwe, showcasing projects, experience, and achievements',
   icons: {
     icon: [

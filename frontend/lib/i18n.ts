@@ -9,14 +9,14 @@ export const translations = {
     contact: 'Contact',
     
     // Hero
-    subtitle: 'AI Engineer & Software Developer',
+    subtitle: 'AI Architect & Software Developer',
     description: 'I build intelligent systems that help businesses solve real-world problems across various industries including healthcare, education, finance, marketing, and more.',
     viewProjects: 'View Projects',
     downloadCV: 'Download CV',
     
     // About
     aboutTitle: 'About Me',
-    about1: "Hey, I'm John - an AI Engineer & Software Developer passionate about building intelligent systems that make a real impact. With experience across multiple industries, I bring diverse expertise to every project.",
+    about1: "Hey, I'm John - an AI Architect & Software Developer passionate about building intelligent systems that make a real impact. With experience across multiple industries, I bring diverse expertise to every project.",
     about2: "When I'm not coding, I'm mentoring others in data/AI careers, spending time with family, or traveling to explore new cultures. Continuous learning and adaptability are what drive me.",
     technologies: 'Technologies',
     skills: 'Skills',
@@ -115,14 +115,14 @@ export const translations = {
     contact: 'Kontakt',
     
     // Hero
-    subtitle: 'KI-Ingenieur & Softwareentwickler',
+    subtitle: 'KI-Architekt & Softwareentwickler',
     description: 'Ich erstelle intelligente Systeme, die Unternehmen dabei helfen, reale Probleme in verschiedenen Branchen wie Gesundheitswesen, Bildung, Finanzen, Marketing und mehr zu lösen.',
     viewProjects: 'Projekte Ansehen',
     downloadCV: 'Lebenslauf Herunterladen',
     
     // About
     aboutTitle: 'Über Mich',
-    about1: 'Hallo, ich bin John - ein KI-Ingenieur und Softwareentwickler, der sich für den Aufbau intelligenter Systeme einsetzt, die einen echten Einfluss haben. Mit Erfahrung in verschiedenen Branchen bringe ich vielfältige Expertise in jedes Projekt ein.',
+    about1: 'Hallo, ich bin John - ein KI-Architekt und Softwareentwickler, der sich für den Aufbau intelligenter Systeme einsetzt, die einen echten Einfluss haben. Mit Erfahrung in verschiedenen Branchen bringe ich vielfältige Expertise in jedes Projekt ein.',
     about2: 'Wenn ich nicht programmiere, betreue ich andere in Karrieren im Bereich Daten/KI, verbringe Zeit mit meiner Familie oder reise, um neue Kulturen zu erkunden. Kontinuierliches Lernen und Anpassungsfähigkeit sind das, was mich antreibt.',
     technologies: 'Technologien',
     skills: 'Fähigkeiten',
