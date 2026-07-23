@@ -559,7 +559,7 @@ export default function Home() {
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
           <a
-            href="mailto:nfluncvjohn@gmail.com"
+            href="mailto:john.igbokwe@synctrack.de"
             className="group p-6 border border-[--border] rounded-[--radius] bg-[--surface] hover:border-[--brand] transition-colors"
           >
             <div className="flex items-start gap-4">
@@ -571,7 +571,7 @@ export default function Home() {
               </div>
               <div className="min-w-0 flex-1">
                 <h3 className="text-lg font-semibold mb-1">{getTranslation(language, "email")}</h3>
-                <p className="text-[--muted] text-sm break-words">nfluncvjohn@gmail.com</p>
+                <p className="text-[--muted] text-sm break-words">john.igbokwe@synctrack.de</p>
               </div>
             </div>
           </a>
