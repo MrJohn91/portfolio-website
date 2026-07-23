@@ -12,8 +12,7 @@ export const translations = {
     subtitle: 'AI Architect & Software Developer',
     description: 'I build intelligent systems that help businesses solve real-world problems across various industries including healthcare, education, finance, marketing, and more.',
     viewProjects: 'View Projects',
-    downloadCV: 'Download CV',
-    
+
     // About
     aboutTitle: 'About Me',
     about1: "Hey, I'm John - an AI Architect & Software Developer passionate about building intelligent systems that make a real impact. With experience across multiple industries, I bring diverse expertise to every project.",
@@ -105,7 +104,7 @@ export const translations = {
     phone: 'Phone',
     
     // Footer
-    copyright: '© 2025 John Igbokwe',
+    copyright: 'John Igbokwe',
   },
   de: {
     // Header
@@ -118,7 +117,6 @@ export const translations = {
     subtitle: 'KI-Architekt & Softwareentwickler',
     description: 'Ich erstelle intelligente Systeme, die Unternehmen dabei helfen, reale Probleme in verschiedenen Branchen wie Gesundheitswesen, Bildung, Finanzen, Marketing und mehr zu lösen.',
     viewProjects: 'Projekte Ansehen',
-    downloadCV: 'Lebenslauf Herunterladen',
     
     // About
     aboutTitle: 'Über Mich',
@@ -211,7 +209,7 @@ export const translations = {
     phone: 'Telefon',
     
     // Footer
-    copyright: '© 2025 John Igbokwe',
+    copyright: 'John Igbokwe',
   },
 };
 

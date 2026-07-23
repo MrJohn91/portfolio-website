@@ -92,15 +92,6 @@ export default function Home() {
             >
               {getTranslation(language, "viewProjects")}
             </a>
-            <a
-              href="/John_Igbokwe_Resume.pdf"
-              download="John_Igbokwe_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-8 py-4 bg-transparent border border-[rgba(255,255,255,0.2)] text-white rounded-2xl font-semibold hover:border-[#64FFDA] hover:bg-[rgba(100,255,218,0.1)] hover:scale-105 hover:shadow-[0_0_20px_rgba(100,255,218,0.3)] transition-all duration-300 no-underline active:scale-95 cursor-pointer"
-            >
-              {getTranslation(language, "downloadCV")}
-            </a>
           </motion.div>
         </div>
       </section>
@@ -638,7 +629,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="max-w-[--maxw] mx-auto px-[--space] py-8 border-t border-[--border] text-center text-[--muted] text-sm">
-        <p>{getTranslation(language, "copyright")}</p>
+        <p>&copy; {new Date().getFullYear()} {getTranslation(language, "copyright")}</p>
       </footer>
     </main>
   )
